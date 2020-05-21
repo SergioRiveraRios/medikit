@@ -24,10 +24,6 @@ export class AddPatientPage implements OnInit {
         Validators.required,
         Validators.pattern('[0-9][0-9]'),
       ])],
-      ingredients: ['', Validators.compose([
-        Validators.minLength(3),
-        Validators.maxLength(150),
-      ])],
       sex: ['', Validators.compose([
         Validators.required
       ])],
