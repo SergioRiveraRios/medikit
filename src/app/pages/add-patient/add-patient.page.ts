@@ -20,16 +20,33 @@ export class AddPatientPage implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(150),
       ])],
-      price: ['', Validators.compose([
+      age: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('[0-9]+'),
-        Validators.minLength(1),
-        Validators.maxLength(10)
+        Validators.pattern('[0-9][0-9]'),
       ])],
       ingredients: ['', Validators.compose([
         Validators.minLength(3),
         Validators.maxLength(150),
-      ])]
+      ])],
+      sex: ['', Validators.compose([
+        Validators.required
+      ])],
+      civil: ['', Validators.compose([
+        Validators.required
+      ])],
+      origin: ['', Validators.compose([
+        Validators.required
+      ])],
+      dom: ['', Validators.compose([
+        Validators.required
+      ])],
+      telephone: ['', Validators.compose([
+        Validators.required
+      ])],
+      id_number: ['', Validators.compose([
+        Validators.required
+      ])],
+      family: ['']
     })
   }
 }
