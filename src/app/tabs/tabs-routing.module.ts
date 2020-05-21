@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path: 'view-patients',
         loadChildren: () => import('../pages/view-patients/view-patients.module').then(m => m.ViewPatientsPageModule)
+      },
+      {
+        path: 'history-patients',
+        loadChildren: () => import('../pages/history-patients/history-patients.module').then(m => m.HistoryPatientsPageModule)
       },{
         path: '',
         redirectTo: '/tabs/view-patients',
