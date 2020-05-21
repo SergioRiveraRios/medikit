@@ -12,7 +12,7 @@
           <hr>
           <div class="ion-text-center">
             <ion-label color="dark">
-              <h1>Añadir Paciente</h1>
+              <h1>Datos Paciente</h1>
             </ion-label>
           </div>
           <div>
@@ -26,23 +26,27 @@
             </ion-item>
             <ion-item>
               <ion-label position="floating">Edad:</ion-label>
-              <ion-input type="text" formControlName="price"></ion-input>
+              <ion-input type="text" formControlName="age"></ion-input>
             </ion-item>
-            <ion-item *ngIf="myForm.get('price').errors && (myForm.get('price'
-                  ).dirty || myForm.get('price').touched || submitted)">
-              <ion-label color="danger">Exactamente 10 </ion-label>
+            <ion-item *ngIf="myForm.get('age').errors && (myForm.get('age'
+                  ).dirty || myForm.get('age').touched || submitted)">
+              <ion-label color="danger">Mayor a 0 menor que 100</ion-label>
             </ion-item>
             <ion-item>
               <ion-label>Sexo</ion-label>
-              <ion-select value="default" okText="Okay" cancelText="Dismiss">
+              <ion-select value="default" okText="Okay" cancelText="Dismiss" formControlName="sex">
                 <ion-select-option value="default">Seleccione uno</ion-select-option>
                 <ion-select-option value="F">Femenino</ion-select-option>
                 <ion-select-option value="M">Masculino</ion-select-option>
               </ion-select>
             </ion-item>
+            <ion-item *ngIf="myForm.get('sex').errors && (myForm.get('sex'
+                  ).dirty || myForm.get('sex').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
             <ion-item>
               <ion-label>Estado Civil:</ion-label>
-              <ion-select value="default" okText="Okay" cancelText="Dismiss">
+              <ion-select value="default" okText="Okay" cancelText="Dismiss" formControlName="civil">
                 <ion-select-option value="default">Seleccione uno</ion-select-option>
                 <ion-select-option value="Soltero">Soltero</ion-select-option>
                 <ion-select-option value="Casado">Casado</ion-select-option>
@@ -50,9 +54,13 @@
                 <ion-select-option value="Otro">Otro</ion-select-option>
               </ion-select>
             </ion-item>
+            <ion-item *ngIf="myForm.get('civil').errors && (myForm.get('civil'
+                  ).dirty || myForm.get('civil').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
             <ion-item>
               <ion-label>Lugar Origen:</ion-label>
-              <ion-select value="default" okText="Okay" cancelText="Dismiss">
+              <ion-select value="default" okText="Okay" cancelText="Dismiss" formControlName="origin">
                 <ion-select-option value="default">Seleccione uno</ion-select-option>
                 <ion-select-option value="Soltero">Nayarit</ion-select-option>
                 <ion-select-option value="Casado">Jalisco</ion-select-option>
@@ -60,17 +68,52 @@
                 <ion-select-option value="Otro">Otros</ion-select-option>
               </ion-select>
             </ion-item>
+            <ion-item *ngIf="myForm.get('origin').errors && (myForm.get('origin'
+                  ).dirty || myForm.get('origin').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
             <ion-item>
               <ion-label position="floating">Domicilio actual:</ion-label>
-              <ion-input type="text" formControlName="price"></ion-input>
+              <ion-input type="text" formControlName="dom"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('dom').errors && (myForm.get('dom'
+                  ).dirty || myForm.get('dom').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Telefono:</ion-label>
-              <ion-input type="text" formControlName="price"></ion-input>
+              <ion-input type="text" formControlName="telephone"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('telephone').errors && (myForm.get('telephone'
+            ).dirty || myForm.get('telephone').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Numero de identificacion:</ion-label>
-              <ion-input type="text" formControlName="price"></ion-input>
+              <ion-input type="text" formControlName="id_number"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('id_number').errors && (myForm.get('id_number'
+            ).dirty || myForm.get('id_number').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
+          </div>
+          <hr>
+          <hr>
+          <div class="ion-text-center">
+            <ion-label color="dark">
+              <h1>Antecedentes Familiares</h1>
+            </ion-label>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label>Relación</ion-label>
+              <ion-select value="default" okText="Okay" cancelText="Dismiss" formControlName="family">
+                <ion-select-option value="default">Seleccione uno</ion-select-option>
+                <ion-select-option value="Soltero">Padre</ion-select-option>
+                <ion-select-option value="Casado">Madre</ion-select-option>
+                <ion-select-option value="Viudo">Tio/tia</ion-select-option>
+                <ion-select-option value="Otro">Otros</ion-select-option>
+              </ion-select>
             </ion-item>
           </div>
           <div>
