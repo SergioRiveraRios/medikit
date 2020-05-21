@@ -8,23 +8,22 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'list',
-        loadChildren: () => import('../pages/list/list.module').then(m => m.ListPageModule)
+        path: 'add-patient',
+        loadChildren: () => import('../pages/add-patient/add-patient.module').then(m => m.AddPatientPageModule)
       },
       {
-        path: 'new-product',
-        loadChildren: () => import('../pages/new-product/new-product.module').then(m => m.NewProductPageModule)
-      },
-      {
+        path: 'view-patients',
+        loadChildren: () => import('../pages/view-patients/view-patients.module').then(m => m.ViewPatientsPageModule)
+      },{
         path: '',
-        redirectTo: '/tabs/list',
+        redirectTo: '/tabs/view-patients',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/list',
+    redirectTo: '/tabs/view-patients',
     pathMatch: 'full'
   }
 ];
