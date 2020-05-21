@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Patient} from 'src/app/models/patient'
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-patients',
@@ -7,11 +8,11 @@ import {Patient} from 'src/app/models/patient'
   styleUrls: ['./view-patients.page.scss'],
 })
 export class ViewPatientsPage implements OnInit {
-  constructor() { }
+  constructor(private router: Router) { }
   patients: any=[
     {
-      name:'Sergio',
-      age:19,
+      name:'Sergio Rivera',
+      age:20,
       sex:'Masculino',
       civil:'Soltero',
       origin:'Tepic,Nayarit',
@@ -20,10 +21,11 @@ export class ViewPatientsPage implements OnInit {
       id_number:12332123,
       family:'',
       next:'20/05/2020',
-      status:true
+      status:true,
+      descrip:'Consulta ocular'
     },
     {
-      name:'Sergio',
+      name:'Luis Fernandez',
       age:19,
       sex:'Masculino',
       civil:'Soltero',
@@ -32,11 +34,22 @@ export class ViewPatientsPage implements OnInit {
       telephone:'3112022118',
       id_number:12332123,
       family:'',
-      next:'20/05/2020',
-      status:true
+      next:'24/05/2020',
+      status:false,
+      descrip:'Revisión rutinaria'
     }
   ]
   ngOnInit() {
   }
-  
+  viewPatient(student: any): void {
+    const extras:NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(student)  
+      }
+    };
+    this.router.navigate(['../detail-patient'],extras); 
+  }
+  newPatient(){
+    this.router.navigate(['../add-patient']); 
+  }
 }
