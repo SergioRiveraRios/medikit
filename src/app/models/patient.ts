@@ -10,4 +10,5 @@ export class Patient {
     family: string;
     status: boolean;
     next: string;
+    descrip:string;
 }
