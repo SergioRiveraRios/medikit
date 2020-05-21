@@ -8,9 +8,33 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'add-patient',
+    loadChildren: () => import('./pages/add-patient/add-patient.module').then( m => m.AddPatientPageModule)
+  },
+  {
+    path: 'view-patients',
+    loadChildren: () => import('./pages/view-patients/view-patients.module').then( m => m.ViewPatientsPageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'history-patients',
+    loadChildren: () => import('./pages/history-patients/history-patients.module').then( m => m.HistoryPatientsPageModule)
+  },
+  {
+    path: 'detail-patient',
+    loadChildren: () => import('./pages/detail-patient/detail-patient.module').then( m => m.DetailPatientPageModule)
+  }
 ];
 
 @NgModule({
