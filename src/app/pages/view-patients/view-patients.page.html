@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="success">
     <ion-title>Lista Pacientes</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -9,27 +9,30 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let patient of patients;index as i">
+    <ion-item-sliding *ngFor="let patient of patients">
       <ion-item>
         <ion-thumbnail slot="start">
           <img src="https://picsum.photos/400">
         </ion-thumbnail>
         <ion-label>
-          <h1>{{patient.name}}</h1>
-          <h2>{{patient.descrip}}</h2>
-          <p>{{patient.next}}</p>
+          <h1>{{patient.nombres}}</h1>
+          <h2>{{patient.sigCita}}</h2>
+          <p>{{patient.descrip}}</p>
         </ion-label>
         <div *ngIf='patient.status'>
-          <ion-badge color="danger" (click)="viewPatient(i)" >No atendido</ion-badge>
+          <ion-badge color="danger" (click)="viewPatient(patient)" >No atendido</ion-badge>
         </div>
         <div *ngIf='!patient.status'>
-          <ion-badge color="warning"(click)="viewPatient(i)" >Pendiente</ion-badge>
+          <ion-badge color="warning" (click)="viewPatient(patient)" >Pendiente</ion-badge>
         </div>
         <ion-icon  name="arrow-forward-circle-outline"></ion-icon>
       </ion-item>
     </ion-item-sliding>
-    <ion-button expand="full" fill="clear" shape="round" (click)="newPatient()">
+  </ion-list>
+  <ion-item>
+    <ion-button color="primary" expand="full" fill="clear" shape="round" (click)="newPatient()" > 
       Agregar paciente
     </ion-button>
-  </ion-list>
+  </ion-item>
+  
 </ion-content>
