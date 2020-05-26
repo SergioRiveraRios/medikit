@@ -1,14 +1,15 @@
 export class Patient {
-    name: string;
-    age: number;
-    sex: string;
+    apPaterno:string;
+    apMaterno:string;
+    nombres: string;
+    edad: number;
+    sexo: string;
     civil: string;
-    origin: string;
+    origen: string;
     dom: string;
-    telephone: string;
+    contacto: string;
     idNumber: number;
-    family: string;
     status: boolean;
-    next: string;
+    sigCita: string;
     descrip:string;
 }
