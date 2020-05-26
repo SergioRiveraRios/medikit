@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class LoginPage implements OnInit {
   public myForm: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,public router:Router) { }
 
   ngOnInit() {
     this.validations();
@@ -23,5 +24,8 @@ export class LoginPage implements OnInit {
         Validators.pattern('[a-zA-Z0-9]+')
       ])]
     });
+  }
+  redirectHome(){
+    this.router.navigate(['/tabs']);
   }
 }
