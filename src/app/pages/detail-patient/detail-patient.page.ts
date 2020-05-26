@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router'
+import { ActivatedRoute, Router, NavigationExtras} from '@angular/router'
 import {Patient} from 'src/app/models/patient'
 @Component({
   selector: 'app-detail-patient',
@@ -7,7 +7,7 @@ import {Patient} from 'src/app/models/patient'
   styleUrls: ['./detail-patient.page.scss'],
 })
 export class DetailPatientPage implements OnInit {
-  patient: any;
+  patient: Patient;
   constructor(private actrouter: ActivatedRoute, private router: Router) {
     this.actrouter.queryParams.subscribe(
       params => {
@@ -17,5 +17,12 @@ export class DetailPatientPage implements OnInit {
   }//constructor
   ngOnInit() {
   }
-
+  newAppointment(patient:Patient):void{
+    const extras:NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(patient)  
+      }
+    };
+    this.router.navigate(['../new-appointment'],extras);
+  }
 }
