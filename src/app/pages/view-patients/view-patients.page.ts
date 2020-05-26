@@ -8,43 +8,48 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./view-patients.page.scss'],
 })
 export class ViewPatientsPage implements OnInit {
+  patients:Patient[]= new Array();
   constructor(private router: Router) { }
-  patients: any=[
-    {
-      name:'Sergio Rivera',
-      age:20,
-      sex:'Masculino',
-      civil:'Soltero',
-      origin:'Tepic,Nayarit',
-      dom:'Helechos #130',
-      telephone:'3112022118',
-      id_number:12332123,
-      family:'',
-      next:'20/05/2020',
-      status:true,
-      descrip:'Consulta ocular'
+  
+  ngOnInit() {
+    this.test();
+  }
+  test(){
+    this.patients.push({
+      apPaterno:'Rivera',
+      apMaterno:'Rios',
+      nombres: 'Sergio',
+      edad: 20,
+      sexo: 'Masculino',
+      civil: 'Soltero',
+      origen: 'Tepic,Nayarit',
+      dom: 'Helechos #130',
+      contacto: '3112022118',
+      idNumber: 12332123,
+      sigCita: '20/05/2020',
+      status: true,
+      descrip: 'Consulta ocular'
     },
     {
-      name:'Luis Fernandez',
-      age:19,
-      sex:'Masculino',
-      civil:'Soltero',
-      origin:'Tepic,Nayarit',
-      dom:'Helechos #130',
-      telephone:'3112022118',
-      id_number:12332123,
-      family:'',
-      next:'24/05/2020',
-      status:false,
-      descrip:'Revisión rutinaria'
-    }
-  ]
-  ngOnInit() {
+      apPaterno:'Lopex',
+      apMaterno:'Fernandez',
+      nombres: 'Luis',
+      edad: 20,
+      sexo: 'Masculino',
+      civil: 'Soltero',
+      origen: 'Tepic,Nayarit',
+      dom: 'Helechos #135',
+      contacto: '3112022118',
+      idNumber: 12332123,
+      sigCita: '25/05/2020',
+      status: false,
+      descrip: 'Revisión semanal'
+    })
   }
-  viewPatient(student: any): void {
+  viewPatient(patient: Patient): void {
     const extras:NavigationExtras = {
       queryParams: {
-        special: JSON.stringify(student)  
+        special: JSON.stringify(patient)  
       }
     };
     this.router.navigate(['../detail-patient'],extras); 
