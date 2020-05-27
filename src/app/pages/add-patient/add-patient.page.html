@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="success">
     <ion-title>Nuevo Paciente</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -102,25 +102,10 @@
           </div>
           <hr>
           <hr>
-          <div class="ion-text-center">
-            <ion-label color="dark">
-              <h1>Antecedentes Familiares</h1>
-            </ion-label>
-          </div>
+          
+          
           <div>
-            <ion-item>
-              <ion-label>Relación</ion-label>
-              <ion-select value="default" okText="Okay" cancelText="Dismiss" formControlName="family">
-                <ion-select-option value="default">Seleccione uno</ion-select-option>
-                <ion-select-option value="Soltero">Padre</ion-select-option>
-                <ion-select-option value="Casado">Madre</ion-select-option>
-                <ion-select-option value="Viudo">Tio/tia</ion-select-option>
-                <ion-select-option value="Otro">Otros</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </div>
-          <div>
-            <ion-button (click)="addProduct()" expand="block" fill="clear" shape="round">
+            <ion-button  expand="block" fill="clear" shape="round">
               Guardar
             </ion-button>
           </div>
