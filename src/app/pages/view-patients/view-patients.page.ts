@@ -10,21 +10,6 @@ import { NavigationExtras, Router } from '@angular/router';
 export class ViewPatientsPage implements OnInit {
   patients:Patient[]= new Array();
   constructor(private router: Router) { }
-<<<<<<< HEAD
-
-  patients: any = [
-    {
-      name: 'Sergio Rivera',
-      age: 20,
-      sex: 'Masculino',
-      civil: 'Soltero',
-      origin: 'Tepic,Nayarit',
-      dom: 'Helechos #130',
-      telephone: '3112022118',
-      id_number: 12332123,
-      family: '',
-      next: '20/05/2020',
-=======
   
   ngOnInit() {
     this.test();
@@ -42,12 +27,10 @@ export class ViewPatientsPage implements OnInit {
       contacto: '3112022118',
       idNumber: 12332123,
       sigCita: '20/05/2020',
->>>>>>> 34109ac65102375f9a135cea4f3d34789569ba4b
       status: true,
       descrip: 'Consulta ocular'
     },
     {
-<<<<<<< HEAD
       name: 'Luis Fernandez',
       age: 19,
       sex: 'Masculino',
@@ -61,7 +44,7 @@ export class ViewPatientsPage implements OnInit {
       status: false,
       descrip: 'Revisión rutinaria'
     }
-  ];
+  ]
 
   ngOnInit() {
   }
@@ -69,8 +52,7 @@ export class ViewPatientsPage implements OnInit {
   viewPatient(student: any): void {
     const extras: NavigationExtras = {
       queryParams: {
-        special: JSON.stringify(student)
-=======
+      special: JSON.stringify(student)
       apPaterno:'Lopex',
       apMaterno:'Fernandez',
       nombres: 'Luis',
@@ -90,7 +72,6 @@ export class ViewPatientsPage implements OnInit {
     const extras:NavigationExtras = {
       queryParams: {
         special: JSON.stringify(patient)  
->>>>>>> 34109ac65102375f9a135cea4f3d34789569ba4b
       }
     };
     this.router.navigate(['../detail-patient'],extras); 
