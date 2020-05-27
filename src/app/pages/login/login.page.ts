@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   public myForm: FormGroup;
-  constructor(private fb: FormBuilder,public router:Router) { }
+  constructor(private fb: FormBuilder, public router: Router) { }
 
   ngOnInit() {
     this.validations();
@@ -25,13 +25,12 @@ export class LoginPage implements OnInit {
       ])]
     });
   }
-<<<<<<< HEAD
+
 
   Login(){
 
-=======
+  }
   redirectHome(){
     this.router.navigate(['/tabs']);
->>>>>>> 34109ac65102375f9a135cea4f3d34789569ba4b
   }
 }

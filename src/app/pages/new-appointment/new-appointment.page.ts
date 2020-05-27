@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from 'src/app/models/appointment'
-import { Patient } from 'src/app/models/patient';
+import { Appointment } from 'src/app/models/appointment';
+import { Patient } from 'src/app/models/patient/patient';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 @Component({
