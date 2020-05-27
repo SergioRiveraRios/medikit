@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyB6elZBx104XTleNea6lP7eBu5Mn6EzQc4",
+    authDomain: "medikit-7e119.firebaseapp.com",
+    databaseURL: "https://medikit-7e119.firebaseio.com",
+    projectId: "medikit-7e119",
+    storageBucket: "medikit-7e119.appspot.com",
+    messagingSenderId: "908206753074",
+    appId: "1:908206753074:web:cd405a5b697d544ff3432b"
+  }
+
 };
 
 /*
