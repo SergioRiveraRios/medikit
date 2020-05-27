@@ -15,9 +15,9 @@ export class NewAppointmentPage implements OnInit {
     this.actrouter.queryParams.subscribe(
       params => {
         this.patient = JSON.parse(params.special);
-      }//params
-    );//actrouter
-  }//constructor
+      } // params
+    ); // actrouter
+  } // constructor
 
   ngOnInit() {
     this.validations();
@@ -30,6 +30,6 @@ export class NewAppointmentPage implements OnInit {
       descrip: ['', Validators.compose([
         Validators.required
       ])]
-    })
+    });
   }
 }

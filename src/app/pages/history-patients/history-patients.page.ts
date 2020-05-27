@@ -15,15 +15,15 @@ export class HistoryPatientsPage implements OnInit {
   }
   test(){
     this.appointments.push({
-      idMedic:'1232323',
-      idPatient:'43434212',
-      fechaCon:'30/03/2020',
-      descrip:'Necesita revisión dermátologica'
-    },{
-      idMedic:'03212332',
-      idPatient:'5123421',
-      fechaCon:'03/04/2020',
-      descrip:'Traer jeringas'
-    })
+      idMedic: '1232323',
+      idPatient: '43434212',
+      fechaCon: '30/03/2020',
+      descrip: 'Necesita revisión dermátologica'
+    }, {
+      idMedic: '03212332',
+      idPatient: '5123421',
+      fechaCon: '03/04/2020',
+      descrip: 'Traer jeringas'
+    });
   }
 }

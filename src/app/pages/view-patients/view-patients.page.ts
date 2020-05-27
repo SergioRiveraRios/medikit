@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Patient} from 'src/app/models/patient/patient';
+import { Patient} from 'src/app/models/patient/patient';
 import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
@@ -8,16 +8,16 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./view-patients.page.scss'],
 })
 export class ViewPatientsPage implements OnInit {
-  patients:Patient[]= new Array();
+  patients: Patient[] = new Array();
   constructor(private router: Router) { }
-  
+
   ngOnInit() {
-    this.test();
+    // this.test();
   }
-  test(){
+  /*test(){
     this.patients.push({
-      apPaterno:'Rivera',
-      apMaterno:'Rios',
+      apPaterno: 'Rivera',
+      apMaterno: 'Rios',
       nombres: 'Sergio',
       edad: 20,
       sexo: 'Masculino',
@@ -43,40 +43,19 @@ export class ViewPatientsPage implements OnInit {
       next: '24/05/2020',
       status: false,
       descrip: 'Revisión rutinaria'
-    }
-  ]
+    });
+  }*/
 
-  ngOnInit() {
-  }
 
-  viewPatient(student: any): void {
+  viewPatient(patient: Patient): void {
     const extras: NavigationExtras = {
       queryParams: {
-      special: JSON.stringify(student)
-      apPaterno:'Lopex',
-      apMaterno:'Fernandez',
-      nombres: 'Luis',
-      edad: 20,
-      sexo: 'Masculino',
-      civil: 'Soltero',
-      origen: 'Tepic,Nayarit',
-      dom: 'Helechos #135',
-      contacto: '3112022118',
-      idNumber: 12332123,
-      sigCita: '25/05/2020',
-      status: false,
-      descrip: 'Revisión semanal'
-    })
-  }
-  viewPatient(patient: Patient): void {
-    const extras:NavigationExtras = {
-      queryParams: {
-        special: JSON.stringify(patient)  
+        special: JSON.stringify(patient)
       }
     };
-    this.router.navigate(['../detail-patient'],extras); 
+    this.router.navigate(['../detail-patient'], extras);
   }
   newPatient(){
-    this.router.navigate(['../add-patient']); 
+    this.router.navigate(['../add-patient']);
   }
 }

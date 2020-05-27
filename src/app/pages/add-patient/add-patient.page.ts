@@ -43,6 +43,6 @@ export class AddPatientPage implements OnInit {
         Validators.required
       ])],
       family: ['']
-    })
+    });
   }
 }

@@ -30,6 +30,7 @@ export class LoginPage implements OnInit {
   Login(){
 
   }
+
   redirectHome(){
     this.router.navigate(['/tabs']);
   }

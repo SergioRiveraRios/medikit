@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Router, NavigationExtras} from '@angular/router'
+import { ActivatedRoute, Router, NavigationExtras} from '@angular/router';
 import {Patient} from 'src/app/models/patient/patient';
 
 @Component({
