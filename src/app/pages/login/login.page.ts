@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { LoginServiceService } from 'src/app/services/login-service.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Doctor } from 'src/app/doctorModel/doctor';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -9,7 +11,14 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   public myForm: FormGroup;
-  constructor(private fb: FormBuilder, public router: Router) { }
+  public isLogged: any = false;
+  user: Doctor = new Doctor();
+  constructor(private fb: FormBuilder,
+              public router: Router,
+              public login: LoginServiceService,
+              public auser: AngularFireAuth) {
+    this.auser.authState.subscribe(user => (this.isLogged = user));
+  }
 
   ngOnInit() {
     this.validations();
@@ -19,19 +28,24 @@ export class LoginPage implements OnInit {
       email: ['', Validators.compose([
         Validators.pattern('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9.]+[.][a-zA-Z0-9]+')])],
       password: ['', Validators.compose([
-        Validators.minLength(8),
-        Validators.maxLength(16),
-        Validators.pattern('[a-zA-Z0-9]+')
+        Validators.required
       ])]
     });
   }
 
-
-  Login(){
-
+  async Login() {
+    this.user.email=this.myForm.get('email').value;
+    this.user.pass=this.myForm.get('password').value;
+    const user = await this.login.signInEmail(this.user);
+    if (user) {
+      this.router.navigate(['/tabs']);
+    }
+    else {
+      console.log('mmmm');
+    }
   }
 
-  redirectHome(){
+  redirectHome() {
     this.router.navigate(['/tabs']);
   }
 }
