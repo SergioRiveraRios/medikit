@@ -8,12 +8,9 @@ export class Patient {
     origin: string;     // Lugar de origen
     dom: string;        // Domicilio actual
     telephone: string;  // telefono actual
-    idNumber: number;   // No. de control
-    status: boolean;    // que tipos
     next: string;       // Siguiente cita
     blood: string;      // tipo de sangre
-    alergic: string;    // alergias
-    family: string;     // antecedentes familiares por enfermedades
-    descrip: [];        // Descripciones/valoraciones por consulta
-    resipe: [];         // recetas
+    alergic: [];    // alergias
+    email:string;
+    password:string;
 }
