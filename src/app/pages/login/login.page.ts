@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginServiceService } from 'src/app/services/login-service.service';
-import {CreateMedicService} from 'src/app/services/createMedic/create-medic.service'
+import { CreateMedicService } from 'src/app/services/createMedic/create-medic.service'
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Doctor } from 'src/app/doctorModel/doctor';
 @Component({
@@ -17,9 +17,8 @@ export class LoginPage implements OnInit {
   constructor(private fb: FormBuilder,
               public router: Router,
               public login: LoginServiceService,
-              public createService:CreateMedicService,
+              public createService: CreateMedicService,
               public auser: AngularFireAuth) {
-    this.auser.authState.subscribe(user => (this.isLogged = user));
   }
 
   ngOnInit() {
@@ -36,19 +35,21 @@ export class LoginPage implements OnInit {
   }
 
   async Login() {
-    this.user.email=this.myForm.get('email').value;
-    this.user.pass=this.myForm.get('password').value;
-    const user = await this.login.signInEmail(this.user);
+    const user = await this.login.signInEmail(
+      this.myForm.get('email').value,
+      this.myForm.get('password').value);
+      
     if (user) {
+      console.log(user.user)
       this.router.navigate(['/tabs']);
     }
     else {
-      console.log('mmmm');
+      console.log();
     }
   }
-  create(){
-    this.user.email=this.myForm.get('email').value;
-    this.user.pass=this.myForm.get('password').value;
+  create() {
+    this.user.email = this.myForm.get('email').value;
+    this.user.pass = this.myForm.get('password').value;
     this.createService.createMedic(this.user);
     this.router.navigate(['/tabs']);
   }
