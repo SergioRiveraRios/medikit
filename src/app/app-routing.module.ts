@@ -38,6 +38,14 @@ const routes: Routes = [
   {
     path: 'new-appointment',
     loadChildren: () => import('./pages/new-appointment/new-appointment.module').then( m => m.NewAppointmentPageModule)
+  },
+  {
+    path: 'new-medic',
+    loadChildren: () => import('./pages/new-medic/new-medic.module').then( m => m.NewMedicPageModule)
+  },
+  {
+    path: 'patient-home',
+    loadChildren: () => import('./pages/patient-home/patient-home.module').then( m => m.PatientHomePageModule)
   }
 ];
 
