@@ -1,6 +1,5 @@
 export class Appointment {
-    idMedic: string;
-    idPatient: string;
+    medic: string;
+    patient: string;
     fechaCon: string;
-    descrip: string;
 }
