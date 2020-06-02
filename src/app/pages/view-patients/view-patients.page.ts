@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Patient} from 'src/app/models/patient/patient';
 import { NavigationExtras, Router } from '@angular/router';
 
+import { AngularFireAuth } from '@angular/fire/auth';
+import {auth} from 'firebase/app'
+
+import {Doctor} from 'src/app/doctorModel/doctor'
 @Component({
   selector: 'app-view-patients',
   templateUrl: './view-patients.page.html',
@@ -9,8 +13,10 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class ViewPatientsPage implements OnInit {
   patients: Patient[] = new Array();
-  constructor(private router: Router) { }
-
+  public isLogged: any = false;
+  userid:string
+  constructor(private router: Router,public auser: AngularFireAuth) { 
+  }
   ngOnInit() {
     // this.test();
   }
