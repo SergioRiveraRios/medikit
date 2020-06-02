@@ -11,6 +11,6 @@ export class Patient {
     next: string;       // Siguiente cita
     blood: string;      // tipo de sangre
     alergic: [];    // alergias
-    email:string;
-    password:string;
+    email: string;
+    password: string;
 }
