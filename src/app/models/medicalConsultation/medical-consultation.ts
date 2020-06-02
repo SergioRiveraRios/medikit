@@ -3,4 +3,4 @@ export class MedicalConsultation {
     patient: string;
     descrip: [];        // Descripciones/valoraciones por consulta
     resipe: [];         // recetas
-}o
+}
