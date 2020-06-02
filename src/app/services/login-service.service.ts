@@ -11,12 +11,13 @@ export class LoginServiceService {
 
   constructor(public auser: AngularFireAuth, private firestore: AngularFirestore) {
     this.auser.authState.subscribe(user => (this.isLogged = user));
+    
   }
 
-  async signInEmail(user: Doctor) {
-    console.log(this.auser.currentUser)
-    return await this.auser.signInWithEmailAndPassword(user.email, user.pass)
+  async signInEmail(email:string,pass:string) {
+    return await this.auser.signInWithEmailAndPassword(email,pass)
       .catch(function (error) {
+        console.log(error)
       })
   }
   
