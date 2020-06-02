@@ -18,12 +18,11 @@ export class CreateMedicService {
   constructor(private firestore: AngularFirestore, public auser: AngularFireAuth) { }
 
   createMedic(doctor: Doctor) {
-    this.auser.createUserWithEmailAndPassword(doctor.email, doctor.email).then(cred => {
+    this.auser.createUserWithEmailAndPassword(doctor.email, doctor.pass).then(cred => {
       return this.firestore.collection('doctors').doc(cred.user.uid).set({
         dom: 'asd',
         idCard: '321232232',
         name: 'sergio',
-        pass: '123123',
         patients: ['asd'],
         schedule: '5:00',
         telephone: '311231232'
