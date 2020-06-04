@@ -46,6 +46,14 @@ const routes: Routes = [
   {
     path: 'patient-home',
     loadChildren: () => import('./pages/patient-home/patient-home.module').then( m => m.PatientHomePageModule)
+  },
+  {
+    path: 'view-appointments',
+    loadChildren: () => import('./pages/view-appointments/view-appointments.module').then( m => m.ViewAppointmentsPageModule)
+  },
+  {
+    path: 'new-medical-consult',
+    loadChildren: () => import('./pages/newMedicalConsult/new-medical-consult/new-medical-consult.module').then( m => m.NewMedicalConsultPageModule)
   }
 ];
 
