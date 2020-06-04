@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'new-medical-consult',
     loadChildren: () => import('./pages/newMedicalConsult/new-medical-consult/new-medical-consult.module').then( m => m.NewMedicalConsultPageModule)
+  },
+  {
+    path: 'my-account',
+    loadChildren: () => import('./pages/my-account/my-account.module').then( m => m.MyAccountPageModule)
   }
 ];
 
