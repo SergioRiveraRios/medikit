@@ -8,13 +8,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title color="primary" class="ion-text-center">
+  
+   
+      
         <ion-label><h1> {{patient.name}}</h1></ion-label>
-        </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
+    
       <ion-list class="ion-align-items-center">
         <img src="https://picsum.photos/300">
       </ion-list>
@@ -47,6 +45,4 @@
         <ion-item class="ion-align-items-center">
           <ion-button (click)="newAppointment(patient)" expand="full">Agendar Cita</ion-button>
         </ion-item>
-    </ion-card-content>
-  </ion-card>
 </ion-content>
