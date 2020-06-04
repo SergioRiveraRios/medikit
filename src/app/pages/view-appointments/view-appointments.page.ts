@@ -5,6 +5,8 @@ import { AngularFirestore } from '@angular/fire/firestore'
 import { AngularFireDatabase } from '@angular/fire/database'
 import { Appointment } from 'src/app/models/appointment/appointment';
 import {ViewAppointmentsService} from 'src/app/services/viewAppointments/view-appointments.service'
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-view-appointments',
   templateUrl: './view-appointments.page.html',
@@ -17,7 +19,9 @@ export class ViewAppointmentsPage implements OnInit {
   constructor(public auser: AngularFireAuth,
               public db: AngularFireDatabase, 
               public firestore: AngularFirestore,
-              private viewAppointService: ViewAppointmentsService) { }
+              private viewAppointService: ViewAppointmentsService,
+              private router:Router,
+              public alertController: AlertController) { }
 
   
   ngOnInit() {
@@ -52,6 +56,39 @@ export class ViewAppointmentsPage implements OnInit {
       });
   }
   
+  newMedicalConsult(){
+      this.router.navigate(['./new-medical-consult']);
+    }
+    async presentAlertMultipleButtons() {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Alert',
+        subHeader: 'Subtitle',
+        message: 'This is an alert message.',
+        buttons: [{
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Editar',
+          role:'edit',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        },{
+          text: 'Confirmar',
+          role:'confirm',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }]
+      });
+  
+      await alert.present();
+    }
 
 
 }
