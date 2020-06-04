@@ -15,9 +15,13 @@ admin.initializeApp({
 })
 export class CreateMedicService {
   doctor: Doctor = new Doctor();
-  constructor(private firestore: AngularFirestore, public auser: AngularFireAuth) { }
+  userID:string;
+  constructor(private firestore: AngularFirestore, public auser: AngularFireAuth) { 
+  
+  }
 
   createMedic(doctor: Doctor) {
+    
     this.auser.createUserWithEmailAndPassword(doctor.email, doctor.pass).then(cred => {
       return this.firestore.collection('doctors').doc(cred.user.uid).set({
         dom: 'asd',
@@ -25,7 +29,8 @@ export class CreateMedicService {
         name: 'sergio',
         patients: ['asd'],
         schedule: '5:00',
-        telephone: '311231232'
+        telephone: '311231232',
+        medic:''
       })
     })
     
