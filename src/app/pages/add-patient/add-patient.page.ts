@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { NewPatientService } from 'src/app/services/newPatient/new-patient.service'
+import { Patient } from 'src/app/models/patient/patient';
 
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore'
 @Component({
   selector: 'app-add-patient',
   templateUrl: './add-patient.page.html',
@@ -8,10 +12,27 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddPatientPage implements OnInit {
   public myForm: FormGroup;
-  constructor(private form: FormBuilder) { }
+  patient: Patient;
+  userId: string;
+  public isLogged: boolean = false;
+  constructor(private form: FormBuilder,
+    private patientService: NewPatientService,
+    private auser: AngularFireAuth) { }
 
   ngOnInit() {
     this.validations();
+    if(this.isLogged){
+      console.log('usuario ya logeado')
+      console.log(this.userId);
+    }else{
+      this.auser.authState.subscribe( user => {
+        if (user) { 
+          this.userId = user.uid
+          console.log(this.userId);
+          this.isLogged=true;
+        }
+      });
+    }
   }
   validations() {
     this.myForm = this.form.group({
@@ -39,10 +60,43 @@ export class AddPatientPage implements OnInit {
       telephone: ['', Validators.compose([
         Validators.required
       ])],
-      id_number: ['', Validators.compose([
-        Validators.required
+      family: [''],
+      weight: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('[0-9][0-9][0-9]'),
       ])],
-      family: ['']
+      height: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('[0-9][0-9][0-9]'),
+      ])],
+      email: ['', Validators.compose([
+        Validators.required,
+      ])],
+      pass: ['', Validators.compose([
+        Validators.required,
+      ])],
+      blood: ['', Validators.compose([
+        Validators.required,
+      ])],
     });
   }
+  newPatient() {
+    this.patient = {
+      name: this.myForm.get('name').value,       // nombre
+      age: this.myForm.get('age').value,           // edad
+      sex: this.myForm.get('sex').value,         // Hombre,Mujer, Otro:espesificar
+      height: this.myForm.get('height').value,      // altura
+      weight: this.myForm.get('weight').value,        // peso
+      civil: this.myForm.get('civil').value,         // estado civil
+      origin: this.myForm.get('origin').value,      // Lugar de origen
+      dom: this.myForm.get('dom').value,          // Domicilio actual
+      telephone: this.myForm.get('telephone').value,     // telefono actual
+      blood: this.myForm.get('blood').value,  // alergias
+      email: this.myForm.get('email').value,
+      password: this.myForm.get('pass').value,
+      medic: this.userId
+    }
+    this.patientService.newPatient(this.patient, this.userId)
+  }
+  
 }
