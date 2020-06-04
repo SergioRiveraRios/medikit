@@ -20,14 +20,14 @@
        <!--<div *ngIf='patient.status'>
           <ion-badge color="danger" (click)="viewPatient(patient)" >No atendido</ion-badge>
         </div>-->
-        <ion-icon  name="arrow-forward-circle-outline"></ion-icon>
+        <ion-icon  name="arrow-forward-circle-outline" (click)="presentAlertMultipleButtons()"></ion-icon>
       </ion-item>
     </ion-item-sliding>
   </ion-list> 
-  <ion-item>
-    <ion-button color="primary" expand="full" fill="clear" shape="round" (click)="newPatient()" > 
-      Agregar paciente
-    </ion-button>
-  </ion-item>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   
 </ion-content>
