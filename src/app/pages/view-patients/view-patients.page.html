@@ -15,9 +15,8 @@
           <img src="https://picsum.photos/400">
         </ion-thumbnail>
         <ion-label>
-          <h1>{{patient.nombres}}</h1>
-          <h2>{{patient.sigCita}}</h2>
-          <p>{{patient.descrip}}</p>
+          <strong>{{patient.name}}</strong>
+          <h1>{{patient.dom}}</h1>
         </ion-label>
         <div *ngIf='patient.status'>
           <ion-badge color="danger" (click)="viewPatient(patient)" >No atendido</ion-badge>
@@ -29,10 +28,16 @@
       </ion-item>
     </ion-item-sliding>
   </ion-list>
-  <ion-item>
+  
+  <!--<ion-item>
     <ion-button color="primary" expand="full" fill="clear" shape="round" (click)="newPatient()" > 
       Agregar paciente
     </ion-button>
-  </ion-item>
+  </ion-item>-->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="newPatient()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   
 </ion-content>
