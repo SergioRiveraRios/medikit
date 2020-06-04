@@ -5,16 +5,13 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-<<<<<<< HEAD
-</ion-header>
-=======
 </ion-header>
 
 <ion-content>
   <ion-card>
     <ion-card-header>
       <ion-card-title color="primary" class="ion-text-center">
-        <ion-label><h1> {{patient.nombres}} {{patient.apPaterno}} {{patient.apMaterno}}</h1></ion-label>
+        <ion-label><h1> {{patient.name}}</h1></ion-label>
         </ion-card-title>
     </ion-card-header>
     <ion-card-content>
@@ -24,11 +21,11 @@
         <ion-list class="ion-align-items-center">
           <ion-item>
             <ion-label>Edad</ion-label>
-            <ion-label color="tertiary">{{patient.edad}}</ion-label> 
+            <ion-label color="tertiary">{{patient.age}}</ion-label> 
           </ion-item>
           <ion-item>
             <ion-label>Genero</ion-label>
-            <ion-label color="tertiary">{{patient.sexo}}</ion-label> 
+            <ion-label color="tertiary">{{patient.sex}}</ion-label> 
           </ion-item>
           <ion-item>
             <ion-label>Estado Civil</ion-label>
@@ -36,7 +33,7 @@
           </ion-item>
           <ion-item>
             <ion-label>Lugar Nacimiento;</ion-label>
-            <ion-label color="tertiary">{{patient.origen}}</ion-label> 
+            <ion-label color="tertiary">{{patient.origin}}</ion-label> 
           </ion-item>
           <ion-item>
             <ion-label>Domicilio;</ion-label>
@@ -44,15 +41,7 @@
           </ion-item>
           <ion-item>
             <ion-label>Contacto;</ion-label>
-            <ion-label color="tertiary">{{patient.contacto}}</ion-label> 
-          </ion-item>
-          <ion-item>
-            <ion-label>Identificador;</ion-label>
-            <ion-label color="tertiary">{{patient.idNumber}}</ion-label> 
-          </ion-item>
-          <ion-item>
-            <ion-label>Siguiente cita;</ion-label>
-            <ion-label color="tertiary">{{patient.sigCita}}</ion-label> 
+            <ion-label color="tertiary">{{patient.telephone}}</ion-label> 
           </ion-item>
         </ion-list>
         <ion-item class="ion-align-items-center">
@@ -61,4 +50,3 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
->>>>>>> 34109ac65102375f9a135cea4f3d34789569ba4b
