@@ -40,17 +40,11 @@ export class LoginPage implements OnInit {
       this.myForm.get('password').value);
       
     if (user) {
-      console.log(user.user)
+      console.log(user.user.uid)
       this.router.navigate(['/tabs']);
     }
     else {
       console.log();
     }
-  }
-  create() {
-    this.user.email = this.myForm.get('email').value;
-    this.user.pass = this.myForm.get('password').value;
-    this.createService.createMedic(this.user);
-    this.router.navigate(['/tabs']);
   }
 }
