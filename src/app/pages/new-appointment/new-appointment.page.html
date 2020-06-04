@@ -14,15 +14,15 @@
     <ion-card-header>
       <ion-card-title color="primary" class="ion-text-center">
         <ion-label>
-          <h1> {{patient.nombres}} {{patient.apPaterno}} {{patient.apMaterno}}</h1>
-        </ion-label>
+          <h1> Agenda una nueva cita</h1>
+        </ion-label> 
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="myForm">
         <div class="ion-text-center">
-          <ion-label color="dark">
-            <h1>Datos Paciente</h1>
+          <ion-label>
+            <h1> {{patient.name}}</h1>
           </ion-label>
         </div>
         <ion-item>
@@ -33,14 +33,7 @@
                     ).dirty || myForm.get('date').touched || submitted)">
           <ion-label color="danger">Campo Obligatorio</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-label position="floating">Descripcion:</ion-label>
-          <ion-input type="text" formControlName="descrip"></ion-input>
-        </ion-item>
-        <ion-item *ngIf="myForm.get('descrip').errors && (myForm.get('descrip'
-                    ).dirty || myForm.get('descrip').touched || submitted)">
-          <ion-label color="danger">Campo Obligatorio</ion-label>
-        </ion-item>
+        
         <ion-item class="ion-align-items-center">
           <ion-button (click)="newAppointment()" expand="full">Agendar Cita</ion-button>
         </ion-item>
