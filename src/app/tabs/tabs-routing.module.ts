@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/view-appointments/view-appointments.module').then(m => m.ViewAppointmentsPageModule)
       },
       {
+        path: 'my-account',
+        loadChildren: () => import('../pages/my-account/my-account-routing.module').then(m => m.MyAccountPageRoutingModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/view-patients',
         pathMatch: 'full'

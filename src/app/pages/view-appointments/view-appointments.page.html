@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title>Lista Pacientes</ion-title>
+    <ion-title>Lista Citas </ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -15,7 +15,12 @@
           <img src="https://picsum.photos/400">
         </ion-thumbnail>
         <ion-label>
-          <strong>{{appointment.patientName}}</strong>
+          <ion-text >
+            <h1>{{appointment.patientName}}</h1>
+          </ion-text>
+          <ion-text color="primary">
+            <h2>{{appointment.date}}</h2>
+          </ion-text>
         </ion-label>
        <!--<div *ngIf='patient.status'>
           <ion-badge color="danger" (click)="viewPatient(patient)" >No atendido</ion-badge>

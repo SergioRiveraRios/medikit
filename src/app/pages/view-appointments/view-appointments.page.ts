@@ -69,9 +69,9 @@ export class ViewAppointmentsPage implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
+          handler: () => {
             console.log('Confirm Cancel: blah');
-          }
+          } 
         }, {
           text: 'Editar',
           role:'edit',
