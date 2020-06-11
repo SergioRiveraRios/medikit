@@ -49,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: 'new-medical-consult',
-    loadChildren: () => import('./pages/newMedicalConsult/new-medical-consult/new-medical-consult.module').then( m => m.NewMedicalConsultPageModule)
+    loadChildren: () => import('./pages/new-medical-consult/new-medical-consult.module').then( m => m.NewMedicalConsultPageModule)
   },
   {
     path: 'my-account',
