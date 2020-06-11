@@ -8,8 +8,7 @@ import { ViewAppointmentsService } from 'src/app/services/viewAppointments/view-
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { Doctor } from 'src/app/doctorModel/doctor';
-
-import { CurrenUserService } from 'src/app/services/currentUser/curren-user.service'
+import {MedicalConsultation} from 'src/app/models/medicalConsultation/medical-consultation'
 
 import { ViewPatientsPage } from 'src/app/pages/view-patients/view-patients.page'
 @Component({
@@ -78,7 +77,7 @@ export class ViewAppointmentsPage implements OnInit {
         role: 'confirm',
         handler: () => {
           console.log('Confirm Okay');
-          this.router.navigate(['/new-medical-consult']);
+          this.newMedicalConsult(appointment);
         }
       }]
     });
@@ -94,6 +93,14 @@ export class ViewAppointmentsPage implements OnInit {
       }
     };
     this.router.navigate(['/edit-appointment'], extras);
+  }
+  newMedicalConsult(appointment:Appointment): void {
+    const extras: NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(appointment)
+      }
+    };
+    this.router.navigate(['/new-medical-consult'], extras);
   }
   
 }
