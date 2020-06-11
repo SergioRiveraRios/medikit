@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from 'src/app/models/appointment';
+import { Appointment } from 'src/app/models/appointment/appointment';
 import { Patient } from 'src/app/models/patient/patient';
 import {NewAppointmentService} from 'src/app/services/newAppointment/new-appointment.service'
 import { ActivatedRoute, Router } from '@angular/router';
