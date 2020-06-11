@@ -13,7 +13,7 @@ export class ViewAppointmentsService {
 
   getDoctorAppointments(doctorID: string) {
      return this.firestore.collection('appointment',
-     ref=>ref.where('idMedic', '==', doctorID)).snapshotChanges()
+     ref=>ref.where('idMedic', '==', doctorID).where('status','==',true)).snapshotChanges()
   }
   
 }
