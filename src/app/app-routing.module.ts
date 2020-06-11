@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'history-patients',
-    loadChildren: () => import('./pages/history-patients/history-patients.module').then( m => m.HistoryPatientsPageModule)
-  },
-  {
     path: 'detail-patient',
     loadChildren: () => import('./pages/detail-patient/detail-patient.module').then( m => m.DetailPatientPageModule)
   },
@@ -58,6 +54,22 @@ const routes: Routes = [
   {
     path: 'my-account',
     loadChildren: () => import('./pages/my-account/my-account.module').then( m => m.MyAccountPageModule)
+  },
+  {
+    path: 'my-account',
+    loadChildren: () => import('./pages/my-account/my-account.module').then( m => m.MyAccountPageModule)
+  },
+  {
+    path: 'userhome',
+    loadChildren: () => import('./pages/userhome/userhome.module').then( m => m.UserhomePageModule)
+  },
+  {
+    path: 'edit-appointment',
+    loadChildren: () => import('./pages/edit-appointment/edit-appointment.module').then( m => m.EditAppointmentPageModule)
+  },
+  {
+    path: 'new-medical-consult',
+    loadChildren: () => import('./pages/new-medical-consult/new-medical-consult.module').then( m => m.NewMedicalConsultPageModule)
   }
 ];
 
