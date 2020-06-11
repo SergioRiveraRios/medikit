@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-
+import { LoginPage} from 'src/app/pages/login/login.page'
 const routes: Routes = [
   {
     path: 'tabs',
