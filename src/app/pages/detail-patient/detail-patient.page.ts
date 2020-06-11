@@ -18,6 +18,7 @@ export class DetailPatientPage implements OnInit {
     ); // actrouter
   }// constructor
   ngOnInit() {
+    
   }
   newAppointment(patient: Patient): void{
     const extras: NavigationExtras = {
