@@ -10,7 +10,8 @@ import {NewMedicalConsultService} from 'src/app/services/newMedicalConsult/new-m
   styleUrls: ['./new-medical-consult.page.scss'],
 })
 export class NewMedicalConsultPage implements OnInit {
-  public medicalConsult:MedicalConsultation;
+  public medicalConsultation:MedicalConsultation;
+  public currentMedicalConsultation:MedicalConsultation;
   public myForm: FormGroup;
   medicamentos: string[] = new Array();
   constructor(private actrouter:ActivatedRoute,
@@ -36,8 +37,8 @@ export class NewMedicalConsultPage implements OnInit {
   getAppointment(){
     this.actrouter.queryParams.subscribe(
       params => {
-        this.medicalConsult = JSON.parse(params.special) as MedicalConsultation;
-        console.log(this.medicalConsult)
+        this.currentMedicalConsultation = JSON.parse(params.special);
+        console.log(this.currentMedicalConsultation)
       }// params
     ); // actrouter
   }
@@ -45,7 +46,20 @@ export class NewMedicalConsultPage implements OnInit {
     this.medicamentos.push(this.myForm.get('medicaments').value);
     this.myForm.get('medicaments').reset();
   }
-
+  setMedical(){
+    this.medicalConsultation = {
+      idMedic:this.currentMedicalConsultation.idMedic,
+      idPatient:this.currentMedicalConsultation.idPatient,
+      idAppointment:this.currentMedicalConsultation.id,
+      date:this.currentMedicalConsultation.date,
+      resipe:this.medicamentos,
+      patientName:this.currentMedicalConsultation.patientName,
+      descrip:this.myForm.get('descrip').value
+    }
+    console.log('bbb',this.medicalConsultation);
+    this.MedicalService.newMedical(this.medicalConsultation)
+    
+  }
   /*setMedical(){
     this.medicalConsult = {
     description:this.myForm.get('descrip').value, 
