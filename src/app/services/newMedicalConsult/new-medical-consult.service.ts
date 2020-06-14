@@ -9,14 +9,16 @@ export class NewMedicalConsultService {
 
   constructor(private firestore: AngularFirestore) { }
 
- /* newMedical(medicalConsultation:MedicalConsultation) {
+  newMedical(medicalConsultation: MedicalConsultation) {
     this.firestore.collection('MedicalConsult').add({
-      doctorID: medicalConsultation.medicID,
-      patientID: medicalConsultation.patientID,
+      doctorID: medicalConsultation.idMedic,
+      patientID: medicalConsultation.idPatient,
+      appointmentID:medicalConsultation.idAppointment,
       date: medicalConsultation.date,
-      patientName:medicalConsultation.patientName,
-      description:medicalConsultation.description,
-      treatment:medicalConsultation.treatment
+      patientName: medicalConsultation.patientName,
+      description: medicalConsultation.descrip,
+      treatment: medicalConsultation.resipe,
+      
     })
-  }*/
+  } 
 }
