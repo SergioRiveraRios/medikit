@@ -1,9 +1,54 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>newMedicadsdsdlConsult</ion-title>
+  <ion-toolbar color="success">
+    <ion-title>Agendar cita</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+
+<ion-content>
+     <ion-grid fixed>
+       <ion-row>
+         <ion-col >
+          <div class="ion-text-center">
+            <ion-text color="tertiary">
+              <h1>Guardar consulta</h1>
+            </ion-text>
+           </div>
+            <form [formGroup]="myForm">
+              <div class="ion-text-center">
+                <ion-label>
+                  <h1> {{medicalConsult.idMedic}}</h1>
+                </ion-label>
+              </div>
+              <ion-item>
+                <ion-label position="floating">Descripción de consulta</ion-label>
+                <ion-textarea formControlName='descrip'></ion-textarea>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Ingredientes</ion-label>
+                <ion-input type="text" formControlName="medicaments"></ion-input>
+              </ion-item>
+              
+              <ion-item class="ion-align-items-center">
+                <ion-button (click)="addMedicament()" expand="full">Agregar Medicamento</ion-button>
+              </ion-item>
+              <div *ngFor="let medicament of medicamentos">
+                <ion-text color="primary">
+                  <h1>{{medicament}}</h1>
+                </ion-text>
+            </div>
+            </form>
+            
+         </ion-col>
+       </ion-row>
+     </ion-grid>
+     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="setMedical()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>
