@@ -1,7 +1,6 @@
 export class MedicalConsultation {
-    idMedic: string;
-    idPatient: string;
-    patientName: string;
+    medic: string;
+    patient: string;
     descrip: [];        // Descripciones/valoraciones por consulta
     resipe: [];         // recetas
 }
