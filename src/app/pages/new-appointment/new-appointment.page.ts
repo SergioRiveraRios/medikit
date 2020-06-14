@@ -46,21 +46,10 @@ export class NewAppointmentPage implements OnInit {
   newAppointment(){
     this.createAppointment();
     this.appointmentService.newAppointment(this.appointment);
+    console.log('mmm')
   }
   getCurrentUser(){
 
-    if(this.isLogged){
-      console.log("usuario ya logeado")
-      console.log(this.userId);
-    }else{
-      this.auser.authState.subscribe( user => {
-        if (user) { 
-          this.userId = user.uid
-          console.log(this.userId);
-          this.isLogged=true;
-        }
-      });
-    }
   }
   getPatientData(){
     this.actrouter.queryParams.subscribe(
@@ -70,8 +59,8 @@ export class NewAppointmentPage implements OnInit {
     ); // actrouter
   }
   createAppointment(){
-    this.appointment={
-      idMedic: this.userId,
+    this.appointment = {
+      idMedic: this.patient.medic,
       idPatient: this.patient.id,
       patientName:this.patient.name,
       date:'123123'
