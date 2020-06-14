@@ -37,16 +37,13 @@ export class ViewPatientsPage implements OnInit {
     };
     this.router.navigate(['../detail-patient'], extras);
   }
-  viewAppointments(): void {
+  newPatient() {
     const extras: NavigationExtras = {
       queryParams: {
         special: JSON.stringify(this.doctor)
       }
     };
-    this.router.navigate(['/tabs'], extras);
-  }
-  newPatient() {
-    this.router.navigate(['../add-patient']);
+    this.router.navigate(['/add-patient'], extras);
   }
   getpatientsCollection(doctorID: string) {
     this.viewService.getPatient(doctorID).subscribe(data => {
