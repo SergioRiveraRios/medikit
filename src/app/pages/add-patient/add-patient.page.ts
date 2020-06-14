@@ -5,6 +5,8 @@ import { Patient } from 'src/app/models/patient/patient';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore'
+import { ActivatedRoute } from '@angular/router';
+import { Doctor } from 'src/app/doctorModel/doctor';
 @Component({
   selector: 'app-add-patient',
   templateUrl: './add-patient.page.html',
@@ -13,26 +15,20 @@ import { AngularFirestore } from '@angular/fire/firestore'
 export class AddPatientPage implements OnInit {
   public myForm: FormGroup;
   patient: Patient;
-  userId: string;
+  doctor: Doctor;
+  url;
+  public estados:string[];
+    
   public isLogged: boolean = false;
   constructor(private form: FormBuilder,
     private patientService: NewPatientService,
-    private auser: AngularFireAuth) { }
+    private auser: AngularFireAuth,
+    private actrouter: ActivatedRoute) {
+      this.getDoctorData();
+     }
 
   ngOnInit() {
     this.validations();
-    if(this.isLogged){
-      console.log('usuario ya logeado')
-      console.log(this.userId);
-    }else{
-      this.auser.authState.subscribe( user => {
-        if (user) { 
-          this.userId = user.uid
-          console.log(this.userId);
-          this.isLogged=true;
-        }
-      });
-    }
   }
   validations() {
     this.myForm = this.form.group({
@@ -70,14 +66,18 @@ export class AddPatientPage implements OnInit {
         Validators.pattern('[0-9][0-9][0-9]'),
       ])],
       email: ['', Validators.compose([
-        Validators.required,
+        Validators.pattern('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9.]+[.][a-zA-Z0-9]+')
       ])],
       pass: ['', Validators.compose([
         Validators.required,
+        Validators.minLength(6)
       ])],
       blood: ['', Validators.compose([
         Validators.required,
       ])],
+      link: ['', Validators.compose([
+        Validators.pattern('https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}')
+      ])]
     });
   }
   newPatient() {
@@ -94,9 +94,19 @@ export class AddPatientPage implements OnInit {
       blood: this.myForm.get('blood').value,  // alergias
       email: this.myForm.get('email').value,
       password: this.myForm.get('pass').value,
-      medic: this.userId
+      medic: this.doctor.id,
+      link:this.url
     }
-    this.patientService.newPatient(this.patient, this.userId)
+    this.patientService.newPatient(this.patient, this.doctor.id)
   }
-  
+  getDoctorData() {
+    this.actrouter.queryParams.subscribe(
+      params => {
+        this.doctor = JSON.parse(params.special) as Doctor;
+      } // params
+    ); // actrouter
+  }
+  changePhoto() {
+    this.url = this.myForm.get('link').value
+  }
 }
