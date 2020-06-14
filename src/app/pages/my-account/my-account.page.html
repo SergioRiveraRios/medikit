@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title>Detalle Paciente</ion-title>
+    <ion-title>Información Doctor</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -11,25 +11,49 @@
   <ion-grid fixed>
     <ion-row class="ion-justify-content-center">
       <ion-col class="ion-justify-content-center">
-        <ion-list class="ion-align-items-center">
-          <!--<ion-label>
-            <h1> {{patient.name}}</h1>
-          </ion-label>-->
-          </ion-list>
+        <div class="ion-text-center">
+          <ion-text color="tertiary">
+            <h1>{{doctor.name}}</h1>
+          </ion-text>
           <ion-list class="ion-align-items-center">
-            <img src="https://picsum.photos/300">
+            <ion-img [src]="doctor.link"></ion-img>
           </ion-list>
+         </div>
+         <div class="ion-text-center">
+           <ion-label color="secondary">
+             <h1>Información Medico</h1>
+           </ion-label>
           <ion-list class="ion-align-items-center">
             <ion-item>
-              <ion-label>Edad</ion-label>
-              <ion-label color="tertiary">{{doctor.email}}</ion-label>
+              <ion-label>Nombre</ion-label>
+              <ion-label color="tertiary">{{doctor.name}}</ion-label>
             </ion-item>
             <ion-item>
-              <ion-label>Genero</ion-label>
-              <ion-label color="tertiary">{{doctor.password}}</ion-label>
+              <ion-label>Cedula</ion-label>
+              <ion-label color="tertiary">{{doctor.idCard}}</ion-label>
             </ion-item>
-           
           </ion-list>
+          </div>
+          <hr>
+          <div class="ion-text-center">
+            <ion-label>
+              <h1> Contacto Doctor</h1>
+            </ion-label>
+            <ion-list>
+              <ion-item>
+                <ion-label>Correo</ion-label>
+                <ion-label color="tertiary">{{doctor.email}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Telefono</ion-label>
+                <ion-label color="tertiary">{{doctor.telephone}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Domicilio</ion-label>
+                <ion-label color="tertiary">{{doctor.dom}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </div>
       </ion-col>
     </ion-row>
   </ion-grid>
