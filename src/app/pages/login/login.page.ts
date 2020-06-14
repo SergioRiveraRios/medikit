@@ -37,7 +37,8 @@ export class LoginPage implements OnInit {
       email: ['', Validators.compose([
         Validators.pattern('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9.]+[.][a-zA-Z0-9]+')])],
       password: ['', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.minLength(6)
       ])]
     });
   }
