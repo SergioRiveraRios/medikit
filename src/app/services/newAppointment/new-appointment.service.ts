@@ -11,9 +11,11 @@ export class NewAppointmentService {
   newAppointment(newAppointment: Appointment) {
     this.firestore.collection('appointment').add({
       idMedic: newAppointment.idMedic,
-      idPatient: newAppointment.idPatient,
+      idPatient8: newAppointment.idPatient,
       date: newAppointment.date,
-      patientName:newAppointment.patientName
+      patientName:newAppointment.patientName,
+      status:true
     })
+    console.log('ada')
   }
 }
