@@ -58,7 +58,8 @@ export class LoginPage implements OnInit {
       if (index.email === this.myForm.get('email').value &&
           index.password === this.myForm.get('password').value) {
           console.log(index)
-          this.sendPatientData(index)
+          localStorage.setItem('myData',JSON.stringify(index));
+          this.router.navigate(['/patient-tabs/userhome'])
           break;
       }
     }
