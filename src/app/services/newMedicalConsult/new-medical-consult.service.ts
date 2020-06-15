@@ -13,7 +13,7 @@ export class NewMedicalConsultService {
     this.firestore.collection('MedicalConsult').add({
       doctorID: medicalConsultation.idMedic,
       patientID: medicalConsultation.idPatient,
-      appointmentID:medicalConsultation.idAppointment,
+      appointmentID: medicalConsultation.idAppointment,
       date: medicalConsultation.date,
       patientName: medicalConsultation.patientName,
       description: medicalConsultation.descrip,
