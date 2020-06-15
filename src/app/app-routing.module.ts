@@ -70,6 +70,18 @@ const routes: Routes = [
   {
     path: 'new-medical-consult',
     loadChildren: () => import('./pages/new-medical-consult/new-medical-consult.module').then( m => m.NewMedicalConsultPageModule)
+  },
+  {
+    path: 'patient-appointments',
+    loadChildren: () => import('./pages/patient-appointments/patient-appointments.module').then( m => m.PatientAppointmentsPageModule)
+  },
+  {
+    path: 'patient-medical-consults',
+    loadChildren: () => import('./pages/patient-medical-consults/patient-medical-consults.module').then( m => m.PatientMedicalConsultsPageModule)
+  },
+  {
+    path: 'patient-tabs',
+    loadChildren: () => import('./patient-tabs/patient-tabs.module').then( m => m.PatientTabsPageModule)
   }
 ];
 
