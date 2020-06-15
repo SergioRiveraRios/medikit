@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title>Agendar cita</ion-title>
+    <ion-title>Guardar consulta</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -15,13 +15,16 @@
          <ion-col >
           <div class="ion-text-center">
             <ion-text color="tertiary">
-              <h1>Guardar consulta</h1>
+              <h1>{{currentAppointment.patientName}}</h1>
+            </ion-text>
+            <ion-text color="primary">
+              <h2>{{currentAppointment.date}} </h2>
             </ion-text>
            </div>
             <form [formGroup]="myForm">
               <div class="ion-text-center">
                 <ion-label>
-                  <h1> {{currentMedicalConsultation.idMedic}}</h1>
+                  <h1> </h1>
                 </ion-label>
               </div>
               <ion-item>

@@ -22,11 +22,14 @@
             <h2>{{appointment.date}}</h2>
           </ion-text>
         </ion-label>
-       <div *ngIf='appointment.status'>
-          <ion-badge color="danger"  >Pendiente</ion-badge>
+       <div *ngIf='appointment.status && !appointment.cancelled'>
+          <ion-badge color="warning">Pendiente</ion-badge>
         </div>
-        <div *ngIf='!appointment.status'>
-          <ion-badge color="danger">No atendido</ion-badge>
+        <div *ngIf='!appointment.status && appointment.cancelled'>
+          <ion-badge color="danger">Cancelada</ion-badge>
+        </div>
+        <div *ngIf='!appointment.status && !appointment.cancelled'>
+          <ion-badge color="success">Realizada</ion-badge>
         </div>
         <ion-icon  name="arrow-forward-circle-outline" ></ion-icon>
       </ion-item>
