@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { Patient} from 'src/app/models/patient/patient'
 @Component({
@@ -9,17 +9,30 @@ import { Patient} from 'src/app/models/patient/patient'
 })
 export class UserhomePage implements OnInit {
   patient:Patient;
-  constructor(private actrouter:ActivatedRoute) { 
-    this.getPatient();
+  constructor(private actrouter:ActivatedRoute,
+              private router:Router) { 
+    this.patient = JSON.parse(localStorage.getItem('myData')) as Patient;
   }
 
   ngOnInit() {
   }
-  getPatient(){
-    this.actrouter.queryParams.subscribe(
-      params => {
-        this.patient = JSON.parse(params.special);
-      }// params
-    ); // actrouter
+  viewAppointments(){
+    const extras: NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(this.patient)
+      }
+    };
+    this.router.navigate(['/patient-appointments'], extras);
+  }
+  viewMedicalConsults(){
+    const extras: NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(this.patient)
+      }
+    };
+    this.router.navigate(['/patient-medical-consults'], extras);
+  }
+  logout(){
+    this.router.navigate(['login'])
   }
 }

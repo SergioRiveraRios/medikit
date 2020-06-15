@@ -94,7 +94,7 @@ export class AddPatientPage implements OnInit {
       blood: this.myForm.get('blood').value,  // alergias
       email: this.myForm.get('email').value,
       password: this.myForm.get('pass').value,
-      medic: this.doctor.id,
+      idMedic: this.doctor.id,
       link:this.url
     }
     this.patientService.newPatient(this.patient, this.doctor.id)

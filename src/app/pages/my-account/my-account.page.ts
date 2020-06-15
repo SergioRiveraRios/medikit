@@ -3,6 +3,7 @@ import {Doctor} from 'src/app/doctorModel/doctor'
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { MyAccountService } from 'src/app/services/myAccount/my-account.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-my-account',
   templateUrl: './my-account.page.html',
@@ -14,7 +15,8 @@ export class MyAccountPage implements OnInit {
   public userId: string;
   constructor(private firestore: AngularFirestore,
               private auser: AngularFireAuth,
-              private accountService: MyAccountService) {
+              private accountService: MyAccountService,
+              private router:Router) {
                 this.getCurrentUser();
                }
 
@@ -23,5 +25,8 @@ export class MyAccountPage implements OnInit {
   getCurrentUser(){
     this.doctor = JSON.parse(localStorage.getItem('myData')) as Doctor;
     console.log("Did data load in appointment : ", this.doctor);
+  }
+  logout(){
+    this.router.navigate(['login'])
   }
 }

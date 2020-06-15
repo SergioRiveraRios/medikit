@@ -51,8 +51,6 @@ export class ViewAppointmentsPage implements OnInit {
         })
       });
   }
-
-
   async presentAlertMultipleButtons(appointment:Appointment) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -84,7 +82,6 @@ export class ViewAppointmentsPage implements OnInit {
 
     await alert.present();
   }
-
 
   editAppointment(appoint:Appointment): void {
     const extras: NavigationExtras = {

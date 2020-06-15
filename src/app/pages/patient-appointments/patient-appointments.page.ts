@@ -13,20 +13,13 @@ export class PatientAppointmentsPage implements OnInit {
   public patient:Patient;
   constructor(private viewAppointService:ViewAppointmentsService,
               private actrouter:ActivatedRoute) { 
-                this.getCurrentUser();
+                this.patient = JSON.parse(localStorage.getItem('myData')) as Patient;
+                this.getPatientAppointment(this.patient.id)
   }
 
   ngOnInit() {
   }
-  getCurrentUser(){
-    this.actrouter.queryParams.subscribe(
-      params => {
-        this.patient = JSON.parse(params.special) as Patient;
-        console.log(this.patient.id)
-        this.getPatientAppointment(this.patient.id)
-      }// params
-    ); // actrouter
-  }
+  
   getPatientAppointment(patientID: string) {
     this.viewAppointService.getPatientAppointments(patientID).subscribe(
       data => {

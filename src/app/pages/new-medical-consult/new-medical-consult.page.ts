@@ -4,6 +4,8 @@ import { NavigationExtras, ActivatedRoute } from '@angular/router';
 import {MedicalConsultation } from 'src/app/models/medicalConsultation/medical-consultation'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {NewMedicalConsultService} from 'src/app/services/newMedicalConsult/new-medical-consult.service' 
+import { Appointment } from 'src/app/models/appointment/appointment';
+import {AppointmentsService } from 'src/app/services/Appointments/appointments.service'
 @Component({
   selector: 'app-new-medical-consult',
   templateUrl: './new-medical-consult.page.html',
@@ -11,12 +13,13 @@ import {NewMedicalConsultService} from 'src/app/services/newMedicalConsult/new-m
 })
 export class NewMedicalConsultPage implements OnInit {
   public medicalConsultation:MedicalConsultation;
-  public currentMedicalConsultation:MedicalConsultation;
+  public currentAppointment:Appointment;
   public myForm: FormGroup;
   medicamentos: string[] = new Array();
-  constructor(private actrouter:ActivatedRoute,
-    private form: FormBuilder,
-    private MedicalService:NewMedicalConsultService) { 
+  constructor(private actrouter: ActivatedRoute,
+              private form: FormBuilder,
+              private MedicalService: NewMedicalConsultService,
+              private appointmentService: AppointmentsService) { 
     
     this.getAppointment();
   }
@@ -37,8 +40,8 @@ export class NewMedicalConsultPage implements OnInit {
   getAppointment(){
     this.actrouter.queryParams.subscribe(
       params => {
-        this.currentMedicalConsultation = JSON.parse(params.special);
-        console.log(this.currentMedicalConsultation)
+        this.currentAppointment = JSON.parse(params.special);
+        console.log(this.currentAppointment)
       }// params
     ); // actrouter
   }
@@ -48,17 +51,23 @@ export class NewMedicalConsultPage implements OnInit {
   }
   setMedical(){
     this.medicalConsultation = {
-      idMedic:this.currentMedicalConsultation.idMedic,
-      idPatient:this.currentMedicalConsultation.idPatient,
-      idAppointment:this.currentMedicalConsultation.id,
-      date:this.currentMedicalConsultation.date,
+      idMedic:this.currentAppointment.idMedic,
+      idPatient:this.currentAppointment.idPatient,
+      idAppointment:this.currentAppointment.id,
+      date:this.currentAppointment.date,
+      time:this.currentAppointment.time,
       resipe:this.medicamentos,
-      patientName:this.currentMedicalConsultation.patientName,
+      patientName:this.currentAppointment.patientName,
       descrip:this.myForm.get('descrip').value
     }
+    this.changeAppointmentStatus();
     console.log('bbb',this.medicalConsultation);
     this.MedicalService.newMedical(this.medicalConsultation)
     
+  }
+  changeAppointmentStatus(){
+    this.currentAppointment.status=false;
+    this.appointmentService.editAppointment(this.currentAppointment);
   }
   /*setMedical(){
     this.medicalConsult = {

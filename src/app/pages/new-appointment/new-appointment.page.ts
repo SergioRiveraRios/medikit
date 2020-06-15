@@ -18,23 +18,28 @@ export class NewAppointmentPage implements OnInit {
   public myForm: FormGroup;
   public isLogged: any = false;
   public userId: string;
+  appointmentDate:Date;
+  appointmentTime:Date;
   constructor(private actrouter: ActivatedRoute, 
               private router: Router,
               private form: FormBuilder,
               public auser: AngularFireAuth,
               private db: AngularFirestore,
               private appointmentService:NewAppointmentService) {
-              this.getPatientData()
+              
     
   } // constructor
 
   ngOnInit() {
     this.validations();
-    this.getCurrentUser();
+    this.getPatientData()
   }
   validations() {
     this.myForm = this.form.group({
       date: ['', Validators.compose([
+        Validators.required
+      ])],
+      time: ['', Validators.compose([
         Validators.required
       ])],
       descrip: ['', Validators.compose([
@@ -45,25 +50,34 @@ export class NewAppointmentPage implements OnInit {
 
   newAppointment(){
     this.createAppointment();
+    console.log(this.appointment)/*
     this.appointmentService.newAppointment(this.appointment);
-    console.log('mmm')
-  }
-  getCurrentUser(){
-
+    console.log('mmm')*/
   }
   getPatientData(){
     this.actrouter.queryParams.subscribe(
       params => {
-        this.patient = JSON.parse(params.special);
+        this.patient = JSON.parse(params.special) as Patient;
       } // params
     ); // actrouter
   }
   createAppointment(){
+    this.getDate();
     this.appointment = {
       idMedic: this.patient.medic,
       idPatient: this.patient.id,
       patientName:this.patient.name,
-      date:'123123'
+      date:this.appointmentDate.getDate()+'-'+
+           (this.appointmentDate.getMonth()+1)+'-'+
+           this.appointmentDate.getFullYear(),
+      time:this.appointmentTime.getHours()+':'+
+            this.appointmentTime.getMinutes()
     }
+    this.appointmentService.newAppointment(this.appointment);
   }
+
+  getDate(){
+    this.appointmentDate=new Date(this.myForm.get('date').value);
+    this.appointmentTime=new Date(this.myForm.get('time').value);
+    }
 }
