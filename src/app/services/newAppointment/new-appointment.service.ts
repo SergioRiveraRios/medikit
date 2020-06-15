@@ -11,8 +11,9 @@ export class NewAppointmentService {
   newAppointment(newAppointment: Appointment) {
     this.firestore.collection('appointment').add({
       idMedic: newAppointment.idMedic,
-      idPatient8: newAppointment.idPatient,
+      idPatient: newAppointment.idPatient,
       date: newAppointment.date,
+      time:newAppointment.time,
       patientName:newAppointment.patientName,
       status:true
     })
