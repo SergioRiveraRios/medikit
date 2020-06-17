@@ -18,8 +18,8 @@ export class AddPatientPage implements OnInit {
   patient: Patient;
   doctor: Doctor;
   url;
-  public estados:string[];
-    
+  public estados: string[];
+
   public isLogged: boolean = false;
   constructor(private form: FormBuilder,
     private patientService: NewPatientService,
@@ -27,8 +27,8 @@ export class AddPatientPage implements OnInit {
     private actrouter: ActivatedRoute,
     public loadingController: LoadingController,
     public toastController: ToastController) {
-      this.getDoctorData();
-     }
+    this.getDoctorData();
+  }
 
   ngOnInit() {
     this.validations();
@@ -66,10 +66,14 @@ export class AddPatientPage implements OnInit {
       weight: ['', Validators.compose([
         Validators.required,
         Validators.pattern('[0-9]*[0-9]*[0-9]'),
+        Validators.minLength(2),
+        Validators.maxLength(3)
       ])],
       height: ['', Validators.compose([
         Validators.required,
         Validators.pattern('[0-9]*[0-9]*[0-9]'),
+        Validators.minLength(2),
+        Validators.maxLength(3)
       ])],
       email: ['', Validators.compose([
         Validators.pattern('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9.]+[.][a-zA-Z0-9]+')
@@ -87,26 +91,26 @@ export class AddPatientPage implements OnInit {
     });
   }
   async newPatient() {
-    this.patient = {
-      name: this.myForm.get('name').value,       // nombre
-      age: this.myForm.get('age').value,           // edad
-      sex: this.myForm.get('sex').value,         // Hombre,Mujer, Otro:espesificar
-      height: this.myForm.get('height').value,      // altura
-      weight: this.myForm.get('weight').value,        // peso
-      civil: this.myForm.get('civil').value,         // estado civil
-      origin: this.myForm.get('origin').value,      // Lugar de origen
-      dom: this.myForm.get('dom').value,          // Domicilio actual
-      telephone: this.myForm.get('telephone').value,     // telefono actual
-      blood: this.myForm.get('blood').value,  // alergias
-      email: this.myForm.get('email').value,
-      password: this.myForm.get('pass').value,
-    medic: this.doctor.id,
-      link:this.url
-    }
-    await this.presentLoading();
-    this.patientService.newPatient(this.patient, this.doctor.id);
     
-    this.router.navigate(['/tabs/view-patients'])
+      this.patient = {
+        name: this.myForm.get('name').value,       // nombre
+        age: this.myForm.get('age').value,           // edad
+        sex: this.myForm.get('sex').value,         // Hombre,Mujer, Otro:espesificar
+        height: this.myForm.get('height').value,      // altura
+        weight: this.myForm.get('weight').value,        // peso
+        civil: this.myForm.get('civil').value,         // estado civil
+        origin: this.myForm.get('origin').value,      // Lugar de origen
+        dom: this.myForm.get('dom').value,          // Domicilio actual
+        telephone: this.myForm.get('telephone').value,     // telefono actual
+        blood: this.myForm.get('blood').value,  // alergias
+        email: this.myForm.get('email').value,
+        password: this.myForm.get('pass').value,
+        medic: this.doctor.id,
+        link: this.url
+      }
+      await this.presentLoading();
+      this.patientService.newPatient(this.patient, this.doctor.id);
+    
   }
   getDoctorData() {
     this.actrouter.queryParams.subscribe(

@@ -17,7 +17,7 @@ export class ViewDoctorsPage implements OnInit {
     console.log("Did data load? : ", this.admin);
     this.getDoctorsCollection();
   }
-
+  
   ngOnInit() {
     this.getDoctorsCollection();
   }

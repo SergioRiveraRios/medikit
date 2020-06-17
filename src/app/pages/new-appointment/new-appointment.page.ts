@@ -63,6 +63,7 @@ export class NewAppointmentPage implements OnInit {
   }
   createAppointment(){
     this.getDate();
+    
     this.appointment = {
       idMedic: this.patient.medic,
       idPatient: this.patient.id,
@@ -77,6 +78,7 @@ export class NewAppointmentPage implements OnInit {
     }
     this.appointmentService.newAppointment(this.appointment);
     this.router.navigate(['/tabs/view-patients'])
+  
   }
 
   getDate(){

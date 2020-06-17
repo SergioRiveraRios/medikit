@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, ActivatedRoute } from '@angular/router';
+import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 
 import {MedicalConsultation } from 'src/app/models/medicalConsultation/medical-consultation'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -19,7 +19,8 @@ export class NewMedicalConsultPage implements OnInit {
   constructor(private actrouter: ActivatedRoute,
               private form: FormBuilder,
               private MedicalService: NewMedicalConsultService,
-              private appointmentService: AppointmentsService) { 
+              private appointmentService: AppointmentsService,
+              private router:Router) { 
     
     this.getAppointment();
   }
@@ -50,6 +51,7 @@ export class NewMedicalConsultPage implements OnInit {
     this.myForm.get('medicaments').reset();
   }
   setMedical(){
+   
     this.medicalConsultation = {
       idMedic:this.currentAppointment.idMedic,
       idPatient:this.currentAppointment.idPatient,
@@ -63,7 +65,7 @@ export class NewMedicalConsultPage implements OnInit {
     this.changeAppointmentStatus();
     console.log('bbb',this.medicalConsultation);
     this.MedicalService.newMedical(this.medicalConsultation)
-    
+    this.router.navigate(['tabs/view-patients']);
   }
   changeAppointmentStatus(){
     this.currentAppointment.status=false;

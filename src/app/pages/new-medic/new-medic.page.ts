@@ -4,7 +4,7 @@ import { Doctor } from 'src/app/doctorModel/doctor';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NewPatientService } from 'src/app/services/newPatient/new-patient.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DoctorsService} from 'src/app/services/doctors/doctors.service'
+import { DoctorsService } from 'src/app/services/doctors/doctors.service'
 @Component({
   selector: 'app-new-medic',
   templateUrl: './new-medic.page.html',
@@ -15,12 +15,12 @@ export class NewMedicPage implements OnInit {
   patient: Patient;
   doctor: Doctor;
   url;
-  public estados:string[];
+  public estados: string[];
   constructor(private patientService: NewPatientService,
     private actrouter: ActivatedRoute,
-    private doctorService:DoctorsService,
+    private doctorService: DoctorsService,
     private form: FormBuilder,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.validations();
@@ -38,7 +38,7 @@ export class NewMedicPage implements OnInit {
       sex: ['', Validators.compose([
         Validators.required
       ])],
-      
+
       dom: ['', Validators.compose([
         Validators.required
       ])],
@@ -59,9 +59,11 @@ export class NewMedicPage implements OnInit {
         Validators.required,
       ])],
       link: ['', Validators.compose([
+        Validators.required,
         Validators.pattern('https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}')
       ])],
       cedula: ['', Validators.compose([
+        Validators.required,
         Validators.pattern('[0-9]+'),
         Validators.minLength(8),
         Validators.maxLength(8)
@@ -69,21 +71,23 @@ export class NewMedicPage implements OnInit {
     });
   }
   newDoctor() {
-    this.doctor = {
-      name: this.myForm.get('name').value,       // nombre
-      sex: this.myForm.get('sex').value,         // Hombre,Mujer, Otro:espesificar
-      dom: this.myForm.get('dom').value,          // Domicilio actual
-      telephone: this.myForm.get('telephone').value,     // telefono actual
-      blood: this.myForm.get('blood').value,  // alergias
-      email: this.myForm.get('email').value,
-      password: this.myForm.get('pass').value,
-      link:this.url,
-      idCard:this.myForm.get('cedula').value
-    }
-    this.doctorService.newDoctor(this.doctor);
-    this.router.navigate(['/admin-tabs/view-doctors'])
+      this.doctor = {
+        name: this.myForm.get('name').value,       // nombre
+        sex: this.myForm.get('sex').value,         // Hombre,Mujer, Otro:espesificar
+        dom: this.myForm.get('dom').value,          // Domicilio actual
+        telephone: this.myForm.get('telephone').value,     // telefono actual
+        blood: this.myForm.get('blood').value,  // alergias
+        email: this.myForm.get('email').value,
+        password: this.myForm.get('pass').value,
+        link: this.myForm.get('link').value,
+        idCard: this.myForm.get('cedula').value
+      }
+      this.doctorService.newDoctor(this.doctor);
+      this.router.navigate(['/admin-tabs/view-doctors'])
+  
   }
   changePhoto() {
-    this.url = this.myForm.get('link').value
+      this.url = this.myForm.get('link').value
   }
+  
 }

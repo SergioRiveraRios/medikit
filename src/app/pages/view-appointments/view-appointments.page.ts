@@ -30,7 +30,7 @@ export class ViewAppointmentsPage implements OnInit {
     public alertController: AlertController,
     public toastController: ToastController) {
       this.getCurrentUser();
-      this.presentToast();
+      
   }
 
   ngOnInit() {
@@ -55,8 +55,6 @@ export class ViewAppointmentsPage implements OnInit {
   async presentAlertMultipleButtons(appointment:Appointment) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Alert',
-      subHeader: 'Subtitle',
       message: 'Selecciona la opción a realizar',
       buttons: [{
         text: 'Cancelar acción',
