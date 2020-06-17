@@ -11,14 +11,16 @@
   <ion-grid fixed>
     <ion-row class="ion-justify-content-center">
       <ion-col class="ion-justify-content-center">
-        <ion-list class="ion-align-items-center">
-          <ion-label>
-            <h1> {{patient.name}}</h1>
-          </ion-label>
-          </ion-list>
+        <div class="ion-text-center">
           <ion-list class="ion-align-items-center">
-            <img src="https://picsum.photos/300">
-          </ion-list>
+            <ion-label>
+              <h1> {{patient.name}}</h1>
+            </ion-label>
+            </ion-list>
+            <ion-list class="ion-align-items-center">
+              <img [src]="patient.link">
+            </ion-list>
+         </div>
           <ion-list class="ion-align-items-center">
             <ion-item>
               <ion-label>Edad</ion-label>
@@ -45,10 +47,14 @@
               <ion-label color="tertiary">{{patient.telephone}}</ion-label>
             </ion-item>
           </ion-list>
-          <ion-item class="ion-align-items-center">
-            <ion-button (click)="newAppointment(patient)" expand="full">Editar Perfil</ion-button>
-            <ion-button (click)="newAppointment(patient)" expand="full">Consultar Historial</ion-button>
-          </ion-item>
+          <div class="ion-text-center">
+            <ion-list class="ion-align-items-center">
+              <ion-item >
+                <ion-button color="primary" class="ion-text-center" (click)="logout()">Cerrar Sesión</ion-button>
+              </ion-item>
+            </ion-list>
+            
+          </div>
       </ion-col>
     </ion-row>
   </ion-grid>

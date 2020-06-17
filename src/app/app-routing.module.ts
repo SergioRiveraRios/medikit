@@ -40,10 +40,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/new-medic/new-medic.module').then( m => m.NewMedicPageModule)
   },
   {
-    path: 'patient-home',
-    loadChildren: () => import('./pages/patient-home/patient-home.module').then( m => m.PatientHomePageModule)
-  },
-  {
     path: 'view-appointments',
     loadChildren: () => import('./pages/view-appointments/view-appointments.module').then( m => m.ViewAppointmentsPageModule)
   },
@@ -70,6 +66,50 @@ const routes: Routes = [
   {
     path: 'new-medical-consult',
     loadChildren: () => import('./pages/new-medical-consult/new-medical-consult.module').then( m => m.NewMedicalConsultPageModule)
+  },
+  {
+    path: 'patient-appointments',
+    loadChildren: () => import('./pages/patient-appointments/patient-appointments.module').then( m => m.PatientAppointmentsPageModule)
+  },
+  {
+    path: 'patient-medical-consults',
+    loadChildren: () => import('./pages/patient-medical-consults/patient-medical-consults.module').then( m => m.PatientMedicalConsultsPageModule)
+  },
+  {
+    path: 'patient-tabs',
+    loadChildren: () => import('./patient-tabs/patient-tabs.module').then( m => m.PatientTabsPageModule)
+  },
+  {
+    path: 'admin-home',
+    loadChildren: () => import('./pages/admin-home/admin-home.module').then( m => m.AdminHomePageModule)
+  },
+  {
+    path: 'admin-tabs',
+    loadChildren: () => import('./admin-tabs/admin-tabs.module').then( m => m.AdminTabsPageModule)
+  },
+  {
+    path: 'new-doctor',
+    loadChildren: () => import('./pages/new-medic/new-medic-routing.module').then( m => m.NewMedicPageRoutingModule)
+  },
+  {
+    path: 'view-doctors',
+    loadChildren: () => import('./pages/view-doctors/view-doctors.module').then( m => m.ViewDoctorsPageModule)
+  },
+  {
+    path: 'detail-doctor',
+    loadChildren: () => import('./pages/detail-doctor/detail-doctor.module').then( m => m.DetailDoctorPageModule)
+  },
+  {
+    path: 'edit-patient',
+    loadChildren: () => import('./pages/edit-patient/edit-patient.module').then( m => m.EditPatientPageModule)
+  },
+  {
+    path: 'detail-consult',
+    loadChildren: () => import('./pages/detail-consult/detail-consult.module').then( m => m.DetailConsultPageModule)
+  },
+  {
+    path: 'admin-patients',
+    loadChildren: () => import('./pages/admin-patients/admin-patients.module').then( m => m.AdminPatientsPageModule)
   }
 ];
 

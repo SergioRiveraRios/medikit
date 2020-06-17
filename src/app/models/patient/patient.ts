@@ -15,4 +15,5 @@ export class Patient {
     email?: string;
     password?: string;
     medic?: string;   //Medico que lo atiende
+    link: string;
 }

@@ -9,14 +9,5 @@ import { Doctor} from 'src/app/doctorModel/doctor'
 export class TabsPage {
   doctor:Doctor;
   constructor(private router:Router,private actrouter:ActivatedRoute) {
-    this.actrouter.queryParams.subscribe(
-                params => {
-                  if(params && params.special){
-                    this.doctor=JSON.parse(params.special) as Doctor;
-                    this.actrouter.snapshot.data[params.special]
-                    console.log( this.actrouter.snapshot.data[params.special])
-                  }
-                }
-              )
   }
 }

@@ -3,4 +3,8 @@ export class Appointment {
     idPatient?: string;
     patientName?:string;
     date?: string;
+    time?:string;
+    status?:boolean;
+    cancelled?:boolean;
+    id?:string;
 }

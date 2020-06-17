@@ -13,7 +13,10 @@ export class NewAppointmentService {
       idMedic: newAppointment.idMedic,
       idPatient: newAppointment.idPatient,
       date: newAppointment.date,
-      patientName:newAppointment.patientName
+      time:newAppointment.time,
+      patientName:newAppointment.patientName,
+      status:true
     })
+    console.log('ada')
   }
 }

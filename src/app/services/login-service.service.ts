@@ -21,7 +21,10 @@ export class LoginServiceService {
     return this.firestore.collection('patient').snapshotChanges();
   }
 
-  
+  getAdmin(){
+    return this.firestore.collection('admin').snapshotChanges();
+
+  }
 
 }
 

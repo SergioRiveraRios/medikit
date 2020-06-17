@@ -6,10 +6,9 @@ import { AngularFireDatabase } from '@angular/fire/database'
 import { Appointment } from 'src/app/models/appointment/appointment';
 import { ViewAppointmentsService } from 'src/app/services/viewAppointments/view-appointments.service'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { AlertController, PopoverController } from '@ionic/angular';
+import { AlertController, PopoverController, ToastController } from '@ionic/angular';
 import { Doctor } from 'src/app/doctorModel/doctor';
-
-import { CurrenUserService } from 'src/app/services/currentUser/curren-user.service'
+import {MedicalConsultation} from 'src/app/models/medicalConsultation/medical-consultation'
 
 import { ViewPatientsPage } from 'src/app/pages/view-patients/view-patients.page'
 @Component({
@@ -28,9 +27,10 @@ export class ViewAppointmentsPage implements OnInit {
     public firestore: AngularFirestore,
     private viewAppointService: ViewAppointmentsService,
     private router: Router,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    public toastController: ToastController) {
       this.getCurrentUser();
-    
+      this.presentToast();
   }
 
   ngOnInit() {
@@ -52,8 +52,6 @@ export class ViewAppointmentsPage implements OnInit {
         })
       });
   }
-
-
   async presentAlertMultipleButtons(appointment:Appointment) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -78,14 +76,13 @@ export class ViewAppointmentsPage implements OnInit {
         role: 'confirm',
         handler: () => {
           console.log('Confirm Okay');
-          this.router.navigate(['/new-medical-consult']);
+          this.newMedicalConsult(appointment);
         }
       }]
     });
 
     await alert.present();
   }
-
 
   editAppointment(appoint:Appointment): void {
     const extras: NavigationExtras = {
@@ -95,5 +92,19 @@ export class ViewAppointmentsPage implements OnInit {
     };
     this.router.navigate(['/edit-appointment'], extras);
   }
-  
+  newMedicalConsult(appointment:Appointment): void {
+    const extras: NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(appointment)
+      }
+    };
+    this.router.navigate(['/new-medical-consult'], extras);
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Sesión cerrada',
+      duration: 500
+    });
+    toast.present();
+  }
 }

@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Nuevo Paciente</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <form [formGroup]="myForm">
+      <ion-row color="primary" class="ion-justify-content-start">
+        <ion-col>
+          <hr>
+          <div class="ion-text-center">
+            <ion-label color="dark">
+              <h1>Datos Paciente</h1>
+            </ion-label>
+          </div>
+          <div>
+            <div>
+              <ion-img [src]="url" class="img"></ion-img>
+              <ion-item>
+                <ion-label position="floating" color="medium">link</ion-label>
+                <ion-input type="text" formControlName="link" placeholder="{{patient.link}}"></ion-input>
+              </ion-item>
+              <ion-button expand="block" fill="clear" shape="round" (click)="changePhoto()">
+                Guardar
+              </ion-button>
+            </div>
+
+            <ion-item>
+              <ion-label position="floating">Nombre</ion-label>
+              <ion-input type="text" formControlName="name"  placeholder="{{patient.name}}"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('name').errors && (myForm.get('name'
+                  ).dirty || myForm.get('name').touched || submitted)">
+              <ion-label color="danger">Min 3 Max 150</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Edad:</ion-label>
+              <ion-input type="text" formControlName="age"  placeholder="{{patient.age}}"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('age').errors && (myForm.get('age'
+                  ).dirty || myForm.get('age').touched || submitted)">
+              <ion-label color="danger">Mayor a 0 menor que 100</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Sexo</ion-label>
+              <ion-select value="{{patient.gender}}" okText="Aceptar" cancelText="Cancelar" formControlName="sex">
+                <ion-select-option value="F">Femenino</ion-select-option>
+                <ion-select-option value="M">Masculino</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Altura:</ion-label>
+              <ion-input type="text" formControlName="height" placeholder="{{patient.height}}"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('height').errors && (myForm.get('height'
+            ).dirty || myForm.get('height').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Peso:</ion-label>
+              <ion-input type="text" formControlName="weight" placeholder="{{patient.weight}}"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('sex').errors && (myForm.get('sex'
+                  ).dirty || myForm.get('sex').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Estado Civil:</ion-label>
+              <ion-select value="{{patient.civil}}" okText="Aceptar" cancelText="Cancelar" formControlName="civil">
+                <ion-select-option value="Soltero">Soltero</ion-select-option>
+                <ion-select-option value="Casado">Casado</ion-select-option>
+                <ion-select-option value="Viudo">Viudo/a</ion-select-option>
+                <ion-select-option value="Otro">Otro</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('civil').errors && (myForm.get('civil'
+                  ).dirty || myForm.get('civil').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Lugar Origen:</ion-label>
+              <ion-select value="{{patient.origin}}" okText="Aceptar" cancelText="Cancelar" formControlName="origin">
+                <ion-select-option value="Nayarit">Nayarit</ion-select-option>
+                <ion-select-option value="Jalisco">Jalisco</ion-select-option>
+                <ion-select-option value="Sinaloa">Sinaloa</ion-select-option>
+                <ion-select-option value="Otro">Otros</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('origin').errors && (myForm.get('origin'
+                  ).dirty || myForm.get('origin').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Tipo de sangre:</ion-label>
+              <ion-select value="{{patient.blood}}" okText="Aceptar" cancelText="Cancelar" formControlName="blood">
+                <ion-select-option value="A+">A+</ion-select-option>
+                <ion-select-option value="A-">A-</ion-select-option>
+                <ion-select-option value="B+">B+</ion-select-option>
+                <ion-select-option value="B-">B-</ion-select-option>
+                <ion-select-option value="O+">O+</ion-select-option>
+                <ion-select-option value="O-">O-</ion-select-option>
+                <ion-select-option value="AB+">AB+</ion-select-option>
+                <ion-select-option value="AB-">AB-</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label position="floating">Domicilio actual:</ion-label>
+              <ion-input type="text" formControlName="dom" placeholder="{{patient.dom}}"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('dom').errors && (myForm.get('dom'
+                  ).dirty || myForm.get('dom').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Telefono:</ion-label>
+              <ion-input type="text" formControlName="telephone" placeholder="{{patient.telephone}}"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('telephone').errors && (myForm.get('telephone'
+            ).dirty || myForm.get('telephone').touched || submitted)">
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Correo:</ion-label>
+              <ion-input type="text" formControlName="email" placeholder="{{patient.email}}"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('email').errors && (myForm.get('email'
+            ).dirty || myForm.get('email').touched || submitted)">
+              <ion-label color="danger">Formato Incorrecto</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Contraseña:</ion-label>
+              <ion-input type="text" formControlName="pass" placeholder="{{patient.password}}"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="myForm.get('pass').errors && (myForm.get('pass'
+            ).dirty || myForm.get('pass').touched || submitted)">
+              <ion-label color="danger">Al menos 6 caracteres</ion-label>
+            </ion-item>
+
+          </div>
+          <hr>
+          <hr>
+
+
+          <div>
+            <ion-button expand="block" fill="clear" shape="round" (click)="editPatient()">
+              Guardar
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

@@ -30,7 +30,8 @@ export class NewPatientService {
       blood:patient.blood,  // alergias
       email:patient.email, 
       password:patient.password, 
-      medic:doctor
+      medic:doctor,
+      link:patient.link
       })
     })
   }

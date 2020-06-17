@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Información Admin</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-justify-content-center">
+        <div class="ion-text-center">
+         
+         </div>
+         <div class="ion-text-center">
+          <ion-list class="ion-align-items-center">
+            <ion-item>
+              <ion-label>Correo</ion-label>
+              <ion-label color="tertiary">{{admin.email}}</ion-label>
+            </ion-item>
+          </ion-list>
+         
+          </div>
+          <div class="ion-text-center">
+            <ion-list class="ion-align-items-center">
+              <ion-item >
+                <ion-button color="danger" class="ion-text-center" (click)="logout()">Cerrar Sesión</ion-button>
+              </ion-item>
+            </ion-list>
+            
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

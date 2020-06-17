@@ -1,6 +1,10 @@
 export class MedicalConsultation {
-    medic: string;
-    patient: string;
-    descrip: [];        // Descripciones/valoraciones por consulta
-    resipe: [];         // recetas
+    idMedic?: string;
+    idPatient?:string;
+    idAppointment?:string;
+    descrip?: string;        // Descripciones/valoraciones por consulta
+    resipe?: string[];         // recetas
+    date?:string;
+    time?:string;
+    patientName:string;
 }

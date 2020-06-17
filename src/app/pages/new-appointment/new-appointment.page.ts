@@ -18,23 +18,28 @@ export class NewAppointmentPage implements OnInit {
   public myForm: FormGroup;
   public isLogged: any = false;
   public userId: string;
+  appointmentDate:Date;
+  appointmentTime:Date;
   constructor(private actrouter: ActivatedRoute, 
               private router: Router,
               private form: FormBuilder,
               public auser: AngularFireAuth,
               private db: AngularFirestore,
               private appointmentService:NewAppointmentService) {
-              this.getPatientData()
+              
     
   } // constructor
 
   ngOnInit() {
     this.validations();
-    this.getCurrentUser();
+    this.getPatientData()
   }
   validations() {
     this.myForm = this.form.group({
       date: ['', Validators.compose([
+        Validators.required
+      ])],
+      time: ['', Validators.compose([
         Validators.required
       ])],
       descrip: ['', Validators.compose([
@@ -45,36 +50,37 @@ export class NewAppointmentPage implements OnInit {
 
   newAppointment(){
     this.createAppointment();
+    console.log(this.appointment)/*
     this.appointmentService.newAppointment(this.appointment);
-  }
-  getCurrentUser(){
-
-    if(this.isLogged){
-      console.log("usuario ya logeado")
-      console.log(this.userId);
-    }else{
-      this.auser.authState.subscribe( user => {
-        if (user) { 
-          this.userId = user.uid
-          console.log(this.userId);
-          this.isLogged=true;
-        }
-      });
-    }
+    console.log('mmm')*/
   }
   getPatientData(){
     this.actrouter.queryParams.subscribe(
       params => {
-        this.patient = JSON.parse(params.special);
+        this.patient = JSON.parse(params.special) as Patient;
       } // params
     ); // actrouter
   }
   createAppointment(){
-    this.appointment={
-      idMedic: this.userId,
+    this.getDate();
+    this.appointment = {
+      idMedic: this.patient.medic,
       idPatient: this.patient.id,
       patientName:this.patient.name,
-      date:'123123'
+      date:this.appointmentDate.getDate()+'-'+
+           (this.appointmentDate.getMonth()+1)+'-'+
+           this.appointmentDate.getFullYear(),
+      time:this.appointmentTime.getHours()+':'+
+            this.appointmentTime.getMinutes(),
+      status:true,
+      cancelled:false
     }
+    this.appointmentService.newAppointment(this.appointment);
+    this.router.navigate(['/tabs/view-patients'])
   }
+
+  getDate(){
+    this.appointmentDate=new Date(this.myForm.get('date').value);
+    this.appointmentTime=new Date(this.myForm.get('time').value);
+    }
 }
