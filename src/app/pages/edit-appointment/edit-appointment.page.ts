@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Appointment } from 'src/app/models/appointment/appointment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppointmentsService } from 'src/app/services/Appointments/appointments.service'
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-edit-appointment',
   templateUrl: './edit-appointment.page.html',
@@ -18,7 +19,9 @@ export class EditAppointmentPage implements OnInit {
   appointmentTime: Date;
   constructor(private actrouter: ActivatedRoute,
     private form: FormBuilder,
-    private appointmentService: AppointmentsService) {
+    private appointmentService: AppointmentsService,
+    private router:Router,
+    public toastController: ToastController) {
     this.getAppointment();
   }
 
@@ -61,7 +64,7 @@ export class EditAppointmentPage implements OnInit {
 
     }
   }
-  editAppointment() {
+  async editAppointment() {
     this.getDate();
     this.appointment.date = this.appointmentDate.getDate() + '-' +
       (this.appointmentDate.getMonth() + 1) + '-' +
@@ -69,10 +72,28 @@ export class EditAppointmentPage implements OnInit {
       this.appointment.time = this.appointmentTime.getHours() + ':' +
       this.appointmentTime.getMinutes()
     this.appointmentService.editAppointment(this.appointment);
+    this.router.navigate(['/tabs/view-patients'])
+    await this.presentToast();
   }
 
   getDate() {
     this.appointmentDate = new Date(this.myForm.get('date').value);
     this.appointmentTime = new Date(this.myForm.get('time').value);
+  }
+
+  cancelAppointment(){
+        this.appointment.cancelled=true;
+        this.appointment.status=false;
+        this.appointmentService.editAppointment(this.appointment);
+        this.router.navigate(['/tabs/view-patients'])
+        this.presentToast();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Cita modificada',
+      duration: 500
+    });
+    toast.present();
   }
 }

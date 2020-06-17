@@ -71,9 +71,12 @@ export class NewAppointmentPage implements OnInit {
            (this.appointmentDate.getMonth()+1)+'-'+
            this.appointmentDate.getFullYear(),
       time:this.appointmentTime.getHours()+':'+
-            this.appointmentTime.getMinutes()
+            this.appointmentTime.getMinutes(),
+      status:true,
+      cancelled:false
     }
     this.appointmentService.newAppointment(this.appointment);
+    this.router.navigate(['/tabs/view-patients'])
   }
 
   getDate(){

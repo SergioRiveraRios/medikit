@@ -6,7 +6,7 @@ import { AngularFireDatabase } from '@angular/fire/database'
 import { Appointment } from 'src/app/models/appointment/appointment';
 import { ViewAppointmentsService } from 'src/app/services/viewAppointments/view-appointments.service'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { AlertController, PopoverController } from '@ionic/angular';
+import { AlertController, PopoverController, ToastController } from '@ionic/angular';
 import { Doctor } from 'src/app/doctorModel/doctor';
 import {MedicalConsultation} from 'src/app/models/medicalConsultation/medical-consultation'
 
@@ -27,9 +27,10 @@ export class ViewAppointmentsPage implements OnInit {
     public firestore: AngularFirestore,
     private viewAppointService: ViewAppointmentsService,
     private router: Router,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    public toastController: ToastController) {
       this.getCurrentUser();
-    
+      this.presentToast();
   }
 
   ngOnInit() {
@@ -99,5 +100,11 @@ export class ViewAppointmentsPage implements OnInit {
     };
     this.router.navigate(['/new-medical-consult'], extras);
   }
-  
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Sesión cerrada',
+      duration: 500
+    });
+    toast.present();
+  }
 }

@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore'
 
 import { Doctor } from 'src/app/doctorModel/doctor'
 import { ViewpatientsService } from 'src/app/services/viewpatients/viewpatients.service'
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-view-patients',
   templateUrl: './view-patients.page.html',
@@ -20,7 +21,8 @@ export class ViewPatientsPage implements OnInit {
   constructor(private router: Router,
               public auser: AngularFireAuth,
               private viewService: ViewpatientsService,
-              private actrouter: ActivatedRoute) {
+              private actrouter: ActivatedRoute,
+              public toastController: ToastController) {
               this.doctor = JSON.parse(localStorage.getItem('myData')) as Doctor;
               console.log("Did data load? : ",this.doctor);
               this.getpatientsCollection(this.doctor.id)
@@ -45,7 +47,7 @@ export class ViewPatientsPage implements OnInit {
     };
     this.router.navigate(['/add-patient'], extras);
   }
-  getpatientsCollection(doctorID: string) {
+  async getpatientsCollection(doctorID: string) {
     this.viewService.getPatient(doctorID).subscribe(data => {
       this.patients = data.map(e => {
         return {
@@ -54,7 +56,14 @@ export class ViewPatientsPage implements OnInit {
         } as Patient;
       })
     });
+    await this.presentToast();
   }
-
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Proceso correcto',
+      duration: 1000
+    });
+    toast.present();
+  }
 
 }

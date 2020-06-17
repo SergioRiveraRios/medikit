@@ -5,8 +5,9 @@ import { Patient } from 'src/app/models/patient/patient';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Doctor } from 'src/app/doctorModel/doctor';
+import { LoadingController, ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-add-patient',
   templateUrl: './add-patient.page.html',
@@ -22,8 +23,10 @@ export class AddPatientPage implements OnInit {
   public isLogged: boolean = false;
   constructor(private form: FormBuilder,
     private patientService: NewPatientService,
-    private auser: AngularFireAuth,
-    private actrouter: ActivatedRoute) {
+    private router: Router,
+    private actrouter: ActivatedRoute,
+    public loadingController: LoadingController,
+    public toastController: ToastController) {
       this.getDoctorData();
      }
 
@@ -39,7 +42,7 @@ export class AddPatientPage implements OnInit {
       ])],
       age: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('[0-9][0-9]'),
+        Validators.pattern('[0-9]*[0-9]'),
       ])],
       sex: ['', Validators.compose([
         Validators.required
@@ -54,16 +57,18 @@ export class AddPatientPage implements OnInit {
         Validators.required
       ])],
       telephone: ['', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern('[0-9]+'),
+        Validators.maxLength(10)
       ])],
       family: [''],
       weight: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('[0-9][0-9][0-9]'),
+        Validators.pattern('[0-9]*[0-9]*[0-9]'),
       ])],
       height: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('[0-9][0-9][0-9]'),
+        Validators.pattern('[0-9]*[0-9]*[0-9]'),
       ])],
       email: ['', Validators.compose([
         Validators.pattern('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9.]+[.][a-zA-Z0-9]+')
@@ -80,7 +85,7 @@ export class AddPatientPage implements OnInit {
       ])]
     });
   }
-  newPatient() {
+  async newPatient() {
     this.patient = {
       name: this.myForm.get('name').value,       // nombre
       age: this.myForm.get('age').value,           // edad
@@ -94,10 +99,13 @@ export class AddPatientPage implements OnInit {
       blood: this.myForm.get('blood').value,  // alergias
       email: this.myForm.get('email').value,
       password: this.myForm.get('pass').value,
-      idMedic: this.doctor.id,
+    medic: this.doctor.id,
       link:this.url
     }
-    this.patientService.newPatient(this.patient, this.doctor.id)
+    await this.presentLoading();
+    this.patientService.newPatient(this.patient, this.doctor.id);
+    
+    this.router.navigate(['/tabs/view-patients'])
   }
   getDoctorData() {
     this.actrouter.queryParams.subscribe(
@@ -108,5 +116,24 @@ export class AddPatientPage implements OnInit {
   }
   changePhoto() {
     this.url = this.myForm.get('link').value
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Por favor, espere',
+      duration: 500
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Paciente creado correctamente',
+      duration: 1000
+    });
+    toast.present();
   }
 }
