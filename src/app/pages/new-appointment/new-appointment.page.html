@@ -26,7 +26,7 @@
               </div>
               <ion-item>
                 <ion-label position="floating">Fecha</ion-label>
-                <ion-datetime  placeholder="Select Date" formControlName="date"></ion-datetime>
+                <ion-datetime  placeholder="Select Date" formControlName="date" min="2020-03-14" max="2021-12-09"></ion-datetime>
               </ion-item>
               <ion-item *ngIf="myForm.get('date').errors && (myForm.get('date'
                           ).dirty || myForm.get('date').touched || submitted)">
