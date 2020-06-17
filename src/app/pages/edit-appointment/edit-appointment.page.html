@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar color="tertiary">
     <ion-title>Editar cita</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -46,13 +46,8 @@
               </ion-item>
               <ion-item>
                 <ion-label>Cancelar Cita</ion-label>
-                <ion-button  disabled="{{deleteStatus}}" expand="full" color="danger">Cancelar</ion-button>
+                <ion-button  disabled="{{deleteStatus}}" expand="full" color="danger" (click)="cancelAppointment()">Cancelar</ion-button>
               </ion-item>
-              <div *ngFor="let medicament of medicamentos">
-                <ion-text color="primary">
-                  <h1>{{appointment.idPatient}}</h1>
-                </ion-text>
-            </div>
             </form>
             
          </ion-col>

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar color="tertiary">
     <ion-title>Nuevo Paciente</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -48,21 +48,21 @@
             </ion-item>
             <ion-item>
               <ion-label>Sexo</ion-label>
-              <ion-select okText="Aceptar" cancelText="Cancelar" formControlName="sex">
+              <ion-select value="M" okText="Aceptar" cancelText="Cancelar" formControlName="sex">
                 <ion-select-option value="F">Femenino</ion-select-option>
                 <ion-select-option value="M">Masculino</ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Altura:</ion-label>
+              <ion-label position="floating">Altura (cm):</ion-label>
               <ion-input type="text" formControlName="height"></ion-input>
             </ion-item>
             <ion-item *ngIf="myForm.get('height').errors && (myForm.get('height'
             ).dirty || myForm.get('height').touched || submitted)">
-        <ion-label color="danger">Campo obligatorio</ion-label>
-      </ion-item>
+              <ion-label color="danger">Campo obligatorio</ion-label>
+            </ion-item>
             <ion-item>
-              <ion-label position="floating">Peso:</ion-label>
+              <ion-label position="floating">Peso (kg):</ion-label>
               <ion-input type="text" formControlName="weight"></ion-input>
             </ion-item>
             <ion-item *ngIf="myForm.get('sex').errors && (myForm.get('sex'
@@ -71,7 +71,7 @@
             </ion-item>
             <ion-item>
               <ion-label>Estado Civil:</ion-label>
-              <ion-select okText="Aceptar" cancelText="Cancelar" formControlName="civil">
+              <ion-select value="Soltero" okText="Aceptar" cancelText="Cancelar" formControlName="civil">
                 <ion-select-option value="Soltero">Soltero</ion-select-option>
                 <ion-select-option value="Casado">Casado</ion-select-option>
                 <ion-select-option value="Viudo">Viudo/a</ion-select-option>
@@ -84,7 +84,7 @@
             </ion-item>
             <ion-item>
               <ion-label>Lugar Origen:</ion-label>
-              <ion-select  okText="Aceptar" cancelText="Cancelar" formControlName="origin">
+              <ion-select value="Jalisco" okText="Aceptar" cancelText="Cancelar" formControlName="origin">
                 <ion-select-option value="Nayarit">Nayarit</ion-select-option>
                 <ion-select-option value="Jalisco">Jalisco</ion-select-option>
                 <ion-select-option value="Sinaloa">Sinaloa</ion-select-option>
@@ -97,16 +97,15 @@
             </ion-item>
             <ion-item>
               <ion-label>Tipo de sangre:</ion-label>
-              <ion-select okText="Aceptar" cancelText="Cancelar" formControlName="origin">
-                <ion-select-option value="apositivo">A+</ion-select-option>
-                <ion-select-option value="anegativo">A-</ion-select-option>
-                <ion-select-option value="bpositivo">B+</ion-select-option>
-                <ion-select-option value="bnegativo">B-</ion-select-option>
-                <ion-select-option value="opositivo">O+</ion-select-option>
-                <ion-select-option value="onegativo">O-</ion-select-option>
-                <ion-select-option value="abpositivo">AB+</ion-select-option>
-                <ion-select-option value="abnegativo">AB-</ion-select-option>
-                <ion-select-option value="Otro">Otros</ion-select-option>
+              <ion-select value="" okText="Aceptar" cancelText="Cancelar" formControlName="blood">
+                <ion-select-option value="A+">A+</ion-select-option>
+                <ion-select-option value="A-">A-</ion-select-option>
+                <ion-select-option value="B+">B+</ion-select-option>
+                <ion-select-option value="B-">B-</ion-select-option>
+                <ion-select-option value="O+">O+</ion-select-option>
+                <ion-select-option value="O-">O-</ion-select-option>
+                <ion-select-option value="AB+">AB+</ion-select-option>
+                <ion-select-option value="AB-">AB-</ion-select-option>
               </ion-select>
             </ion-item>
 

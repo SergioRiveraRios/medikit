@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar color="tertiary">
     <ion-title>Lista Citas </ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -10,10 +10,7 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let appointment of appointments">
-      <ion-item (click)="presentAlertMultipleButtons(appointment)">
-        <ion-thumbnail slot="start">
-          <img src="https://picsum.photos/400">
-        </ion-thumbnail>
+      <ion-item>
         <ion-label>
           <ion-text >
             <h1>{{appointment.patientName}}</h1>
@@ -21,9 +18,12 @@
           <ion-text color="primary">
             <h2>{{appointment.date}}</h2>
           </ion-text>
+          <ion-text color="primary">
+            <h2>{{appointment.time}}</h2>
+          </ion-text>
         </ion-label>
        <div *ngIf='appointment.status && !appointment.cancelled'>
-          <ion-badge color="warning">Pendiente</ion-badge>
+          <ion-badge color="warning" (click)="presentAlertMultipleButtons(appointment)">Pendiente</ion-badge>
         </div>
         <div *ngIf='!appointment.status && appointment.cancelled'>
           <ion-badge color="danger">Cancelada</ion-badge>
