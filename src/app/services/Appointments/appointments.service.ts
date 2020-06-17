@@ -13,5 +13,8 @@ export class AppointmentsService {
   editAppointment(app:Appointment){
     this.firestore.collection('appointment').doc(app.id).update(app)
   }
-  
+  deletePatientAppointments(patient:string){
+    this.firestore.collection('appointment').doc(patient).delete();
+  }
+
 }
