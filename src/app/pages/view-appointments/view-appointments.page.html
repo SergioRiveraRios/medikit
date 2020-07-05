@@ -11,15 +11,14 @@
   <ion-list>
     <ion-item-sliding *ngFor="let appointment of appointments">
       <ion-item (click)="presentAlertMultipleButtons(appointment)">
-        <ion-thumbnail slot="start">
-          <img src="https://picsum.photos/400">
-        </ion-thumbnail>
+        
         <ion-label>
           <ion-text >
             <h1>{{appointment.patientName}}</h1>
           </ion-text>
           <ion-text color="primary">
             <h2>{{appointment.date}}</h2>
+            <p>asdsddsdsdsds</p>
           </ion-text>
           <ion-text color="primary">
             <h3>{{appointment.time}}</h3>
