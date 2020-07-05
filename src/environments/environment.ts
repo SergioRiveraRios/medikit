@@ -12,6 +12,7 @@ export const environment = {
     storageBucket: "medikit-7e119.appspot.com",
     messagingSenderId: "908206753074",
     appId: "1:908206753074:web:cd405a5b697d544ff3432b"
+    
   }
 
 };
