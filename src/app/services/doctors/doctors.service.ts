@@ -28,4 +28,6 @@ export class DoctorsService {
   deleteDoctor(doctorID:string){
     this.firestore.collection('doctors').doc(doctorID).delete();
   }
+
+  
 }
