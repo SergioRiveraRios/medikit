@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore'
 
 import { AngularFireDatabase } from '@angular/fire/database'
 import { Appointment } from 'src/app/models/appointment/appointment';
-import { ViewAppointmentsService } from 'src/app/services/viewAppointments/view-appointments.service'
+import { AppointmentsService } from 'src/app/services/Appointments/appointments.service'
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { AlertController, PopoverController, ToastController } from '@ionic/angular';
 import { Doctor } from 'src/app/doctorModel/doctor';
@@ -25,7 +25,7 @@ export class ViewAppointmentsPage implements OnInit {
   constructor(public auser: AngularFireAuth,
     public db: AngularFireDatabase,
     public firestore: AngularFirestore,
-    private viewAppointService: ViewAppointmentsService,
+    private appointmentsService: AppointmentsService,
     private router: Router,
     public alertController: AlertController,
     public toastController: ToastController) {
@@ -38,11 +38,10 @@ export class ViewAppointmentsPage implements OnInit {
   }
   getCurrentUser(){
     this.doctor = JSON.parse(localStorage.getItem('myData')) as Doctor;
-    console.log("Did data load in appointment : ", this.doctor);
     this.getDoctorAppointment(this.doctor.id)
   }
   getDoctorAppointment(userID: string) {
-    this.viewAppointService.getDoctorAppointments(userID).subscribe(
+    this.appointmentsService.getDoctorAppointments(userID).subscribe(
       data => {
         this.appointments = data.map(e => {
           return {

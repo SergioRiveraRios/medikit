@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ViewAppointmentsService} from 'src/app/services/viewAppointments/view-appointments.service'
+import {AppointmentsService} from 'src/app/services/Appointments/appointments.service'
 import { Appointment } from 'src/app/models/appointment/appointment';
 import { Patient } from 'src/app/models/patient/patient';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import {AppointmentsService} from 'src/app/services/Appointments/appointments.service'
 @Component({
   selector: 'app-patient-appointments',
   templateUrl: './patient-appointments.page.html',
@@ -13,7 +12,7 @@ import {AppointmentsService} from 'src/app/services/Appointments/appointments.se
 export class PatientAppointmentsPage implements OnInit {
   public appointments:Appointment[]
   public patient:Patient;
-  constructor(private viewAppointService:ViewAppointmentsService,
+  constructor(private appointmentsService:AppointmentsService,
     public alertController: AlertController,
     public appService:AppointmentsService) { 
                 this.patient = JSON.parse(localStorage.getItem('myData')) as Patient;
@@ -22,7 +21,7 @@ export class PatientAppointmentsPage implements OnInit {
   ngOnInit() {
   }
   getPatientAppointment(patientID: string) {
-    this.viewAppointService.getPatientAppointments(patientID).subscribe(
+    this.appointmentsService.getPatientAppointments(patientID).subscribe(
       data => {
         this.appointments = data.map(e => {
           return {

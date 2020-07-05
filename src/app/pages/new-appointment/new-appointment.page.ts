@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from 'src/app/models/appointment/appointment';
 import { Patient } from 'src/app/models/patient/patient';
-import {NewAppointmentService} from 'src/app/services/newAppointment/new-appointment.service'
+import {AppointmentsService} from 'src/app/services/Appointments/appointments.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -25,7 +25,7 @@ export class NewAppointmentPage implements OnInit {
               private form: FormBuilder,
               public auser: AngularFireAuth,
               private db: AngularFirestore,
-              private appointmentService:NewAppointmentService) {
+              private appointmentsService:AppointmentsService) {
               
     
   } // constructor
@@ -49,8 +49,7 @@ export class NewAppointmentPage implements OnInit {
   }
 
   newAppointment(){
-    this.createAppointment();
-    console.log(this.appointment)/*
+    this.createAppointment();/*
     this.appointmentService.newAppointment(this.appointment);
     console.log('mmm')*/
   }
@@ -63,7 +62,6 @@ export class NewAppointmentPage implements OnInit {
   }
   createAppointment(){
     this.getDate();
-    
     this.appointment = {
       idMedic: this.patient.medic,
       idPatient: this.patient.id,
@@ -76,7 +74,7 @@ export class NewAppointmentPage implements OnInit {
       status:true,
       cancelled:false
     }
-    this.appointmentService.newAppointment(this.appointment);
+    this.appointmentsService.newAppointment(this.appointment);
     this.router.navigate(['/tabs/view-patients'])
   
   }

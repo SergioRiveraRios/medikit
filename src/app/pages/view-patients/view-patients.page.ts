@@ -6,7 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore'
 
 import { Doctor } from 'src/app/doctorModel/doctor'
-import { ViewpatientsService } from 'src/app/services/viewpatients/viewpatients.service'
+import { PatientsService } from 'src/app/services/patients/patients.service'
 import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-view-patients',
@@ -20,11 +20,10 @@ export class ViewPatientsPage implements OnInit {
 
   constructor(private router: Router,
               public auser: AngularFireAuth,
-              private viewService: ViewpatientsService,
+              private PatientsService: PatientsService,
               private actrouter: ActivatedRoute,
               public toastController: ToastController) {
               this.doctor = JSON.parse(localStorage.getItem('myData')) as Doctor;
-              console.log("Did data load? : ",this.doctor);
               this.getpatientsCollection(this.doctor.id)
               
   }
@@ -48,7 +47,7 @@ export class ViewPatientsPage implements OnInit {
     this.router.navigate(['/add-patient'], extras);
   }
   async getpatientsCollection(doctorID: string) {
-    this.viewService.getPatient(doctorID).subscribe(data => {
+    this.PatientsService.getPatient(doctorID).subscribe(data => {
       this.patients = data.map(e => {
         return {
           id: e.payload.doc.id,

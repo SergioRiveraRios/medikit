@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
-import { LoginServiceService } from 'src/app/services/login-service.service';
+import { LoginService } from 'src/app/services/login/login.service';
 import { CreateMedicService } from 'src/app/services/createMedic/create-medic.service'
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Doctor } from 'src/app/doctorModel/doctor';
@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
   public activeDoctor: Doctor;
   constructor(private fb: FormBuilder,
     public router: Router,
-    public login: LoginServiceService,
+    public loginService: LoginService,
     public createService: CreateMedicService,
     public auser: AngularFireAuth,
     public loadingController: LoadingController) {
@@ -51,7 +51,6 @@ export class LoginPage implements OnInit {
     for (const index of this.doctors) {
       if (index.email === this.myForm.get('email').value &&
         index.password === this.myForm.get('password').value) {
-        console.log(index)
         this.activeDoctor == index;
         localStorage.setItem('myData', JSON.stringify(index));
         await this.presentLoading();
@@ -62,7 +61,6 @@ export class LoginPage implements OnInit {
     for (const index of this.patients) {
       if (index.email === this.myForm.get('email').value &&
         index.password === this.myForm.get('password').value) {
-        console.log(index)
         localStorage.setItem('myData', JSON.stringify(index));
         await this.presentLoading();
         this.router.navigate(['/patient-tabs/userhome'])
@@ -72,7 +70,6 @@ export class LoginPage implements OnInit {
     for (const index of this.admins) {
       if (index.email === this.myForm.get('email').value &&
         index.pass === this.myForm.get('password').value) {
-        console.log(index)
         localStorage.setItem('myData', JSON.stringify(index));
         await this.presentLoading();
         this.router.navigate(['/admin-tabs/admin-home'])
@@ -82,7 +79,7 @@ export class LoginPage implements OnInit {
     
   }
   getDoctors() {
-    this.login.getDoctors().subscribe(data => {
+    this.loginService.getDoctors().subscribe(data => {
       this.doctors = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -92,7 +89,7 @@ export class LoginPage implements OnInit {
     });
   }
   getPatients() {
-    this.login.getPatients().subscribe(data => {
+    this.loginService.getPatients().subscribe(data => {
       this.patients = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -102,7 +99,7 @@ export class LoginPage implements OnInit {
     });
   }
   getAdmin(){
-    this.login.getAdmin().subscribe(data => {
+    this.loginService.getAdmin().subscribe(data => {
       this.admins = data.map(e => {
         return {
           id: e.payload.doc.id,

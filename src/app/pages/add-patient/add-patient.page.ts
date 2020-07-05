@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { NewPatientService } from 'src/app/services/newPatient/new-patient.service'
+import { PatientsService } from 'src/app/services/patients/patients.service'
 import { Patient } from 'src/app/models/patient/patient';
-
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Doctor } from 'src/app/doctorModel/doctor';
 import { LoadingController, ToastController } from '@ionic/angular';
@@ -22,7 +19,7 @@ export class AddPatientPage implements OnInit {
 
   public isLogged: boolean = false;
   constructor(private form: FormBuilder,
-    private patientService: NewPatientService,
+    private patientService: PatientsService,
     private router: Router,
     private actrouter: ActivatedRoute,
     public loadingController: LoadingController,

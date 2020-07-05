@@ -3,7 +3,7 @@ import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 
 import {MedicalConsultation } from 'src/app/models/medicalConsultation/medical-consultation'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {NewMedicalConsultService} from 'src/app/services/newMedicalConsult/new-medical-consult.service' 
+import {MedicalConsultService} from 'src/app/services/medicalConsult/medical-consult.service' 
 import { Appointment } from 'src/app/models/appointment/appointment';
 import {AppointmentsService } from 'src/app/services/Appointments/appointments.service'
 @Component({
@@ -18,7 +18,7 @@ export class NewMedicalConsultPage implements OnInit {
   medicamentos: string[] = new Array();
   constructor(private actrouter: ActivatedRoute,
               private form: FormBuilder,
-              private MedicalService: NewMedicalConsultService,
+              private MedicalService: MedicalConsultService,
               private appointmentService: AppointmentsService,
               private router:Router) { 
     
@@ -63,7 +63,6 @@ export class NewMedicalConsultPage implements OnInit {
       descrip:this.myForm.get('descrip').value
     }
     this.changeAppointmentStatus();
-    console.log('bbb',this.medicalConsultation);
     this.MedicalService.newMedical(this.medicalConsultation)
     this.router.navigate(['tabs/view-patients']);
   }

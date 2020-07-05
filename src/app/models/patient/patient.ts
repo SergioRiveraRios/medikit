@@ -14,6 +14,6 @@ export class Patient {
     alergic?: [];    // alergias
     email?: string;
     password?: string;
-    medic?: string;   //Medico que lo atiende
+    idmedic?: string;   //Medico que lo atiende
     link: string;
 }
