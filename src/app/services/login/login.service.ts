@@ -1,18 +1,14 @@
-import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { AngularFirestore } from '@angular/fire/firestore'
-import { Doctor } from "src/app/doctorModel/doctor"
-import { User } from '../models/user/user';
+
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginServiceService {
-  public isLogged: any = false;
+export class LoginService {
 
-  constructor(public auser: AngularFireAuth, private firestore: AngularFirestore) {
-    
-  }
+  constructor(public auser: AngularFireAuth, private firestore: AngularFirestore) { }
   getDoctors() {
     return this.firestore.collection('doctors').snapshotChanges();
   }
@@ -25,6 +21,4 @@ export class LoginServiceService {
     return this.firestore.collection('admin').snapshotChanges();
 
   }
-
 }
-

@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Doctor} from 'src/app/doctorModel/doctor'
-import { ActivatedRoute } from '@angular/router';
-
 @Injectable({
   providedIn: 'root'
 })
-export class CurrenUserService {
+export class UsersService {
   currentDoctor:Doctor;
-  constructor() {
-
-  }
+  constructor() { }
 
   setUser(doctor:Doctor){
     console.log('setted')
